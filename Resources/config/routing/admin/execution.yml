@@ -1,0 +1,93 @@
+ekyna_mailing_execution_admin_home:
+    path: /
+    defaults: { _controller: "ekyna_mailing.execution.controller:homeAction" }
+    requirements:
+        _method: GET
+        campaignId: \d+
+
+ekyna_mailing_execution_admin_list:
+    path: /list
+    defaults: { _controller: "ekyna_mailing.execution.controller:listAction" }
+    requirements:
+        _method: GET|POST
+        campaignId: \d+
+
+ekyna_mailing_execution_admin_new:
+    path: /new
+    defaults: { _controller: "ekyna_mailing.execution.controller:newAction" }
+    requirements:
+        _method: GET|POST
+        campaignId: \d+
+
+ekyna_mailing_execution_admin_show:
+    path: /{executionId}/show
+    defaults: { _controller: "ekyna_mailing.execution.controller:showAction" }
+    requirements:
+        _method: GET|POST
+        campaignId: \d+
+        executionId: \d+
+
+ekyna_mailing_execution_admin_controls:
+    path: /{executionId}/controls
+    defaults: { _controller: "ekyna_mailing.execution.controller:controlsAction" }
+    requirements:
+        _method: GET
+        campaignId: \d+
+        executionId: \d+
+
+ekyna_mailing_execution_admin_lock:
+    path: /{executionId}/lock
+    defaults: { _controller: "ekyna_mailing.execution.controller:lockAction" }
+    requirements:
+        _method: GET
+        campaignId: \d+
+        executionId: \d+
+
+ekyna_mailing_execution_admin_unlock:
+    path: /{executionId}/unlock
+    defaults: { _controller: "ekyna_mailing.execution.controller:unlockAction" }
+    requirements:
+        _method: GET
+        campaignId: \d+
+        executionId: \d+
+
+ekyna_mailing_execution_admin_start:
+    path: /{executionId}/start
+    defaults: { _controller: "ekyna_mailing.execution.controller:startAction" }
+    requirements:
+        _method: GET
+        campaignId: \d+
+        executionId: \d+
+
+ekyna_mailing_execution_admin_stop:
+    path: /{executionId}/stop
+    defaults: { _controller: "ekyna_mailing.execution.controller:stopAction" }
+    requirements:
+        _method: GET
+        campaignId: \d+
+        executionId: \d+
+
+ekyna_mailing_execution_admin_recipients_unlink:
+    path: /{executionId}/recipients/{recipientId}/unlink
+    defaults: { _controller: "ekyna_mailing.execution.controller:unlinkRecipientAction" }
+    requirements:
+        _method: GET|POST
+        campaignId: \d+
+        executionId: \d+
+        recipientId: \d+
+
+ekyna_mailing_execution_admin_edit:
+    path: /{executionId}/edit
+    defaults: { _controller: "ekyna_mailing.execution.controller:editAction" }
+    requirements:
+        _method: GET|POST
+        campaignId: \d+
+        executionId: \d+
+
+ekyna_mailing_execution_admin_remove:
+    path: /{executionId}/remove
+    defaults: { _controller: "ekyna_mailing.execution.controller:removeAction" }
+    requirements:
+        _method: GET|POST
+        campaignId: \d+
+        executionId: \d+

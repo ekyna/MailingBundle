@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping
+        xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                            http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+<entity name="Ekyna\Bundle\MailingBundle\Entity\Campaign"
+        table="mail_campaign">
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="name" type="string" column="name" length="255"/>
+        <field name="fromEmail" type="string" column="fromEmail" length="255"/>
+        <field name="fromName" type="string" column="fromName" length="255"/>
+        <field name="subject" type="string" column="subject" length="255"/>
+        <field name="template" type="string" column="template" length="64"/>
+        <field name="content" type="text" column="content"/>
+
+        <one-to-many target-entity="Ekyna\Bundle\MailingBundle\Entity\Execution" mapped-by="campaign" field="executions" fetch="EXTRA_LAZY">
+            <cascade>
+                <cascade-all />
+            </cascade>
+        </one-to-many>
+
+    </entity>
+
+</doctrine-mapping>

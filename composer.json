@@ -1,0 +1,35 @@
+{
+    "name" : "ekyna/mailing-bundle",
+    "description" : "Mailing management",
+    "type" : "symfony-bundle",
+    "authors" : [{
+            "name" : "Etienne Dauvergne",
+            "homepage" : "http://ekyna.com"
+        }
+    ],
+    "keywords" : [
+        "symfony2",
+        "mailing",
+        "bundle"
+    ],
+    "homepage" : "https://github.com/ekyna/MailingBundle",
+    "license" : [
+        "MIT"
+    ],
+    "require" : {
+        "php" : ">=5.3.3",
+        "ekyna/admin-bundle" : "0.1.*@dev",
+        "winzou/state-machine-bundle" : "dev-master"
+    },
+    "autoload" : {
+        "psr-0" : {
+            "Ekyna\\Bundle\\MailingBundle" : ""
+        }
+    },
+    "target-dir" : "Ekyna/Bundle/MailingBundle",
+    "extra" : {
+        "branch-alias" : {
+            "dev-master" : "0.1.x-dev"
+        }
+    }
+}

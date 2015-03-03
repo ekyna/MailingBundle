@@ -1,0 +1,27 @@
+{{ bootstrap_set_style('horizontal') }}
+{{ form_errors(form) }}
+<div class="row">
+    <div class="col-md-6">
+        {{ form_row(form.file, {'label_col': 4, 'widget_col': 8}) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_row(form.delimiter, {'label_col': 4, 'widget_col': 8}) }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        {{ form_row(form.emailColNum, {'label_col': 4, 'widget_col': 8}) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_row(form.enclosure, {'label_col': 4, 'widget_col': 8}) }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        {{ form_row(form.firstNameColNum, {'label_col': 4, 'widget_col': 8}) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_row(form.lastNameColNum, {'label_col': 4, 'widget_col': 8}) }}
+    </div>
+</div>
+{{ form_rest(form) }}

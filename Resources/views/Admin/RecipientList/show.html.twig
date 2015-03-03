@@ -1,0 +1,30 @@
+{% extends "EkynaAdminBundle:Entity:sided.html.twig" %}
+
+{% block title %}
+<h1>{{ 'ekyna_mailing.recipientList.header.show'|trans({'%name%': recipientList})|raw }}</h1>
+{% endblock %}
+
+{% block actions %}
+{{ admin_resource_btn(recipientList, 'list') }}
+{{ admin_resource_btn(recipientList, 'new') }}
+{% endblock %}
+
+{% block main %}
+<div class="actions">
+    {{ admin_resource_btn(recipientList, 'edit') }}
+    {{ admin_resource_btn(recipientList, 'remove') }}
+</div>
+<div class="show show-with-tabs">
+    <ul class="nav nav-tabs">
+	    <li class="active"><a href="#mail-recipientList-general" data-toggle="tab">{{ 'ekyna_core.field.general'|trans }}</a></li>
+	</ul>
+	<div class="show-body">
+	    <div class="tab-content">
+		    <div class="tab-pane active" id="mail-recipientList-general">
+		        {{ show_row(recipientList.name, null, 'ekyna_core.field.name') }}
+		    </div>
+        </div>
+	</div>
+</div>
+{% include "EkynaMailingBundle:Admin/Provider:providers.html.twig" %}
+{% endblock %}

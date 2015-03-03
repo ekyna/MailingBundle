@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping
+    xmlns="http://symfony.com/schema/dic/constraint-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
+                        http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="Ekyna\Bundle\MailingBundle\Entity\Recipient">
+        <constraint name="Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity">
+            <option name="fields">email</option>
+            <option name="message">ekyna_mailing.recipient.unique_email</option>
+        </constraint>
+        <property name="email">
+            <constraint name="NotBlank" />
+            <constraint name="Email" />
+        </property>
+        <property name="firstName">
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="max">64</option>
+            </constraint>
+        </property>
+        <property name="lastName">
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="max">64</option>
+            </constraint>
+        </property>
+    </class>
+
+    <class name="Ekyna\Bundle\MailingBundle\Entity\Campaign">
+        <property name="name">
+            <constraint name="NotBlank" />
+        </property>
+        <property name="fromEmail">
+            <constraint name="NotBlank" />
+            <constraint name="Email" />
+        </property>
+        <property name="fromName">
+            <constraint name="NotBlank" />
+        </property>
+        <property name="subject">
+            <constraint name="NotBlank" />
+        </property>
+        <property name="content">
+            <constraint name="NotBlank" />
+            <constraint name="Ekyna\Bundle\MailingBundle\Validator\Constraints\CampaignContent" />
+        </property>
+    </class>
+
+    <class name="Ekyna\Bundle\MailingBundle\Entity\Execution">
+        <constraint name="Ekyna\Bundle\MailingBundle\Validator\Constraints\Execution" />
+    </class>
+
+    <class name="Ekyna\Bundle\MailingBundle\Model\ImportRecipients">
+        <constraint name="Ekyna\Bundle\MailingBundle\Validator\Constraints\ImportRecipients" />
+        <property name="file">
+            <constraint name="NotNull" />
+            <constraint name="File">
+                <option name="mimeTypes">
+                    <value>text/csv</value>
+                    <value>application/csv</value>
+                    <value>text/plain</value>
+                </option>
+                <option name="mimeTypesMessage">ekyna_mailing.recipient_provider.import.file.invalid_csv</option>
+            </constraint>
+        </property>
+        <property name="delimiter">
+            <constraint name="NotBlank" />
+            <constraint name="Length">
+                <option name="min">1</option>
+                <option name="max">1</option>
+            </constraint>
+        </property>
+        <property name="enclosure">
+            <constraint name="NotBlank" />
+            <constraint name="Length">
+                <option name="min">1</option>
+                <option name="max">1</option>
+            </constraint>
+        </property>
+        <property name="emailColNum">
+            <constraint name="NotBlank" />
+            <constraint name="GreaterThanOrEqual">
+                <option name="value">0</option>
+            </constraint>
+        </property>
+        <property name="firstNameColNum">
+            <constraint name="GreaterThanOrEqual">
+                <option name="value">0</option>
+            </constraint>
+        </property>
+        <property name="lastNameColNum">
+            <constraint name="GreaterThanOrEqual">
+                <option name="value">0</option>
+            </constraint>
+        </property>
+    </class>
+
+</constraint-mapping>

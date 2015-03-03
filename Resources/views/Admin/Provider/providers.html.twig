@@ -1,0 +1,27 @@
+<div class="sub-header">
+    <h2>{{ 'ekyna_mailing.recipient.label.plural'|trans }}</h2>
+</div>
+{{ ekyna_table_render(recipients) }}
+<div class="show show-with-tabs">
+    <ul class="nav nav-tabs">
+        {% for provider in providers %}
+        <li{% if loop.first %} class="active"{% endif %}>
+            <a href="#mail-recipients-{{ provider.name }}" data-toggle="tab">{{ provider.label|trans }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <div class="show-body">
+        <div class="tab-content">
+            {% for provider in providers %}
+            {% set form = provider.form %}
+            <div class="tab-pane{% if loop.first %} active{% endif %}" id="mail-recipients-{{ provider.name }}">
+                {{ form_start(form) }}
+                <div class="form-body form-body-unstyled">
+                    {% include provider.template %}
+                </div>
+                {{ form_end(form) }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

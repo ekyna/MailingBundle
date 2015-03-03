@@ -1,0 +1,30 @@
+{% block execution_state -%}
+    <span class="label label-{{ theme }}">{{ state|trans }}</span>
+{%- endblock execution_state %}
+
+{% block execution_button -%}
+{% spaceless %}
+<a {% if enabled -%}
+        href="{{ path('ekyna_mailing_execution_admin_' ~ action, {
+            'campaignId': execution.campaign.id,
+            'executionId': execution.id
+        }) }}" class="btn btn-xs btn-{{ theme }}"
+    {%- else -%}
+        href="javascript: void(0)" class="btn btn-xs btn-{{ theme }} disabled"
+    {%- endif %}>
+    <span class="fa fa-{{ icon }}"></span>&nbsp;{{ ('ekyna_core.button.' ~ label)|trans }}
+</a>
+{% endspaceless %}
+{%- endblock execution_button %}
+
+{% block execution_progress -%}
+{% spaceless %}
+<div class="progress">
+    <div class="progress-bar progress-bar-{{ theme }}{% if striped %} progress-bar-striped{% endif %}"
+         role="progressbar" style="width:{{ percent }}%;min-width:2em;"
+         aria-valuenow="{{ value }}" aria-valuemin="{{ min }}" aria-valuemax="{{ max }}">
+        {{- percent }}%{{ append -}}
+    </div>
+</div>
+{% endspaceless %}
+{%- endblock execution_progress %}

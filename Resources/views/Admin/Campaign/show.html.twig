@@ -1,0 +1,47 @@
+{% extends "EkynaAdminBundle:Entity:sided.html.twig" %}
+
+{% block title %}
+<h1>{{ 'ekyna_mailing.campaign.header.show'|trans({'%name%': campaign})|raw }}</h1>
+{% endblock %}
+
+{% block actions %}
+{{ admin_resource_btn(campaign, 'list') }}
+{{ admin_resource_btn(campaign, 'new') }}
+{% endblock %}
+
+{% block main %}
+<div class="actions">
+    {{ admin_resource_btn(campaign, 'edit') }}
+    {{ admin_resource_btn(campaign, 'remove') }}
+</div>
+<div class="show show-with-tabs">
+    <ul class="nav nav-tabs">
+	    <li class="active"><a href="#mail-mailing-general" data-toggle="tab">{{ 'ekyna_core.field.general'|trans }}</a></li>
+	    <li><a href="#mail-mailing-content" data-toggle="tab">{{ 'ekyna_core.field.content'|trans }}</a></li>
+	    <li><a href="#mail-mailing-stats" data-toggle="tab">{{ 'ekyna_mailing.campaign.stats.label'|trans }}</a></li>
+	</ul>
+	<div class="show-body">
+	    <div class="tab-content">
+		    <div class="tab-pane active" id="mail-mailing-general">
+		        {{ show_row(campaign.name, 'text', 'ekyna_core.field.name') }}
+		        {{ show_row(campaign.fromEmail, 'text', 'ekyna_mailing.campaign.field.from_email') }}
+		        {{ show_row(campaign.fromName, 'text', 'ekyna_mailing.campaign.field.from_name') }}
+		        {{ show_row(campaign.subject, 'text', 'ekyna_core.field.subject') }}
+		    </div>
+            <div class="tab-pane" id="mail-mailing-content">
+                {{ show_row(path('ekyna_mailing_campaign_admin_content', identifiers|merge({'campaignId': campaign.id})), 'tinymce', 'ekyna_core.field.content') }}
+            </div>
+            <div class="tab-pane" id="mail-mailing-stats">
+                {% include "EkynaMailingBundle:Admin/Campaign:_progress.html.twig" %}
+            </div>
+        </div>
+	</div>
+</div>
+<div class="sub-header">
+    <h2>{{ 'ekyna_mailing.execution.label.plural'|trans }}</h2>
+</div>
+<div class="actions">
+    {{ ui_button('ekyna_mailing.execution.button.new', {'theme': 'success', 'size': 'xs', 'type': 'link', 'path': path('ekyna_mailing_execution_admin_new', {'campaignId': campaign.id}), 'icon': 'plus'}) }}
+</div>
+{{ ekyna_table_render(executions) }}
+{% endblock %}

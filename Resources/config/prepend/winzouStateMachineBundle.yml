@@ -1,0 +1,90 @@
+winzou_state_machine:
+    ekyna_mailing_execution:
+        class: Ekyna\Bundle\MailingBundle\Entity\Execution
+        states:
+            - design
+            - pending
+            - started
+            - running
+            - pauseda
+            - abort
+            - done
+        transitions:
+            lock:
+                from: [design]
+                to: pending
+            unlock:
+                from: [pending, abort]
+                to: design
+            start:
+                from: [pending, abort]
+                to: started
+            run:
+                from: [started, paused]
+                to: running
+            pause:
+                from: [running]
+                to: paused
+            stop:
+                from: [started, running, paused]
+                to: abort
+            terminate:
+                from: [running]
+                to: done
+        callbacks:
+            before:
+                before_lock:
+                    on: 'lock'
+                    do: [@ekyna_mailing.execution.transition, onBeforeExecutionLock]
+                    args: ['object']
+                before_unlock:
+                    on: 'unlock'
+                    do: [@ekyna_mailing.execution.transition, onBeforeExecutionUnlock]
+                    args: ['object']
+                before_start:
+                    on: 'start'
+                    do: [@ekyna_mailing.execution.transition, onBeforeExecutionStart]
+                    args: ['object']
+                before_terminate:
+                    on: 'terminate'
+                    do: [@ekyna_mailing.execution.transition, onBeforeExecutionTerminate]
+                    args: ['object']
+    ekyna_mailing_recipientExecution:
+        class: Ekyna\Bundle\MailingBundle\Entity\RecipientExecution
+        states:
+            - pending
+            - error
+            - sent
+            - opened
+            - visited
+        transitions:
+            fail:
+                from: [pending]
+                to: error
+            send:
+                from: [pending]
+                to: sent
+            open:
+                from: [sent]
+                to: opened
+            visit:
+                from: [opened]
+                to: visited
+        callbacks:
+            before:
+                before_fail:
+                    on: 'fail'
+                    do: [@ekyna_mailing.execution.transition, onBeforeRecipientFail]
+                    args: ['object']
+                before_send:
+                    on: 'send'
+                    do: [@ekyna_mailing.execution.transition, onBeforeRecipientSend]
+                    args: ['object']
+                before_open:
+                    on: 'open'
+                    do: [@ekyna_mailing.execution.transition, onBeforeRecipientOpen]
+                    args: ['object']
+                before_visit:
+                    on: 'visit'
+                    do: [@ekyna_mailing.execution.transition, onBeforeRecipientVisit]
+                    args: ['object']

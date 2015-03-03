@@ -1,0 +1,49 @@
+ekyna_mailing_campaign_admin_home:
+    path: /
+    defaults: { _controller: "ekyna_mailing.campaign.controller:homeAction" }
+    requirements:
+        _method: GET
+
+ekyna_mailing_campaign_admin_list:
+    path: /list
+    defaults: { _controller: "ekyna_mailing.campaign.controller:listAction" }
+    requirements:
+        _method: GET|POST
+
+ekyna_mailing_campaign_admin_new:
+    path: /new
+    defaults: { _controller: "ekyna_mailing.campaign.controller:newAction" }
+    requirements:
+        _method: GET|POST
+
+ekyna_mailing_campaign_admin_show:
+    path: /{campaignId}/show
+    defaults: { _controller: "ekyna_mailing.campaign.controller:showAction" }
+    requirements:
+        _method: GET
+        campaignId:  \d+
+
+ekyna_mailing_campaign_admin_edit:
+    path: /{campaignId}/edit
+    defaults: { _controller: "ekyna_mailing.campaign.controller:editAction" }
+    requirements:
+        _method: GET|POST
+        campaignId:  \d+
+
+ekyna_mailing_campaign_admin_content:
+    path: /{campaignId}/content
+    defaults: { _controller: "ekyna_mailing.campaign.controller:contentAction" }
+    requirements:
+        _method: GET
+        campaignId:  \d+
+
+ekyna_mailing_campaign_admin_remove:
+    path: /{campaignId}/remove
+    defaults: { _controller: "ekyna_mailing.campaign.controller:removeAction" }
+    requirements:
+        _method: GET|POST
+        campaignId:  \d+
+
+ekyna_mailing_execution_admin:
+    resource: "execution.yml"
+    prefix:   /{campaignId}/executions

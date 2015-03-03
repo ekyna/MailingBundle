@@ -1,0 +1,11 @@
+{% extends 'EkynaAdminBundle::base.xml.twig' %}
+
+{% block response %}
+<title>{{ 'ekyna_mailing.execution.header.new'|trans|raw }}</title>
+<form><![CDATA[
+<form action="{{ path('ekyna_mailing_execution_admin_new') }}" {{ form_enctype(form) }} method="post" class="form-horizontal form-with-tabs">
+    {% include "EkynaMailingBundle:Admin/Execution:_form.html.twig" %}
+    {{ ui_form_footer(form) }}
+</form>
+]]></form>
+{% endblock %}

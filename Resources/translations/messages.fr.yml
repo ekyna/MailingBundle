@@ -1,0 +1,134 @@
+ekyna_mailing:
+    menu: Publipostage
+    default_template: Par défaut
+    campaign:
+        label:
+            singular: Campagne
+            plural: Campagnes
+        header:
+            list: Campagnes <small>Liste des campagnes</small>
+            show: Détail de la campagne <small>%name%</small>
+            new: Créer une nouvelle campagne
+            edit: Modifier la campagne <small>%name%</small>
+            remove: Supprimer la campagne <small>%name%</small>
+        button:
+            list: Liste des campagnes
+            show: Détail de la campagne
+            new: Nouvelle campagne
+            edit: Modifier la campagne
+            remove: Supprimer la campagne
+        alert:
+            empty_list: Aucune campagne configuré
+        stats:
+            label: Statistiques
+            sent: Envoyés
+            failed: Echecs
+            opened: Ouvert
+            visited: Visités
+        field:
+            from_email: Email expéditeur
+            from_name: Nom expéditeur
+            template: Modèle
+    execution:
+        label:
+            singular: Exécution
+            plural: Exécutions
+        header:
+            list: Exécutions <small>Liste des exécutions</small>
+            show: Détail de l'exécution <small>%name%</small>
+            new: Créer une nouvelle exécution
+            edit: Modifier l'exécution <small>%name%</small>
+            remove: Supprimer l'exécution <small>%name%</small>
+        button:
+            list: Liste des exécutions
+            show: Détail de l'exécution
+            new: Nouvelle exécution
+            edit: Modifier l'exécution
+            remove: Supprimer l'exécution
+        alert:
+            empty_list: Aucune exécution configuré
+        type:
+            manual: Manuelle
+            auto: Programmée
+        state:
+            design: Conception
+            pending: En attente
+            started: Démarrée
+            running: En cours d'envoi
+            paused: Suspendue
+            abort: Interrompue
+            done: Terminée
+        transition:
+            lock:
+                succeed: L'exécution a bien été vérouillée.
+                failed: Impossible de vérouiller l'exécution.
+            unlock:
+                succeed: L'exécution a bien été dévérouillée.
+                failed: Impossible de dévérouiller l'exécution.
+            start:
+                succeed: L'exécution a bien été démarrée.
+                failed: Impossible de démarrer l'exécution.
+            stop:
+                succeed: L'exécution a bien été stoppée.
+                failed: Impossible de stopper l'exécution.
+        message:
+            start_auto: >
+                Cette exécution est de type "Programmée". Si vous souhaitez la démarrer mainteant,
+                veuillez sélectionner le type "Manuelle".
+            no_recipient: >
+                Veuillez choisir une liste de diffusion ou saisir des abonnés avant de démarrer l'exécution.
+            locked_update: L'exécution est verrouillée et ne peut être modifiée.
+            locked_delete: L'exécution est verrouillée et ne peut être supprimée.
+    recipientList:
+        label:
+            singular: Liste de diffusion
+            plural: Listes de diffusion
+        header:
+            list: Listes de diffusions <small>Liste des listes de diffusions</small>
+            show: Détail de la liste de diffusion <small>%name%</small>
+            new: Créer une nouvelle liste de diffusion
+            edit: Modifier la liste de diffusion <small>%name%</small>
+            remove: Supprimer la liste de diffusion <small>%name%</small>
+        button:
+            list: Liste des liste
+            show: Détail de la liste
+            new: Nouvelle liste
+            edit: Modifier la liste
+            remove: Supprimer la liste
+        alert:
+            empty_list: Aucune liste de diffusion configuré
+    recipient:
+        label:
+            singular: Abonné
+            plural: Abonnés
+        header:
+            list: Abonnés <small>Liste des abonnés</small>
+            show: Détail de l'abonné <small>%name%</small>
+            new: Créer un nouvel abonné
+            edit: Modifier l'abonné <small>%name%</small>
+            remove: Supprimer l'abonné <small>%name%</small>
+        button:
+            list: Liste des abonnés
+            show: Détail de l'abonné
+            new: Nouvel abonné
+            edit: Modifier l'abonné
+            remove: Supprimer l'abonné
+        alert:
+            empty_list: Aucun abonné configuré
+    recipient_provider:
+        new: Nouvel abonné
+        add: Ajouter un abonné
+        added_count: %count% abonné(s) ont été ajouté(s).
+        import:
+            label: Importer
+            file: Fichier CSV
+            delimiter: Séparateur de champ
+            enclosure: Encadrement de texte
+            email_col_num: Colonne adresse email
+            first_name_col_num: Colonne prénom
+            last_name_col_num: Colonne nom
+            error:
+                unreadable_file: Echec lors de la lecture du fichier.
+                column_not_exists: Aucun donnée trouvé dans cette colonne.
+                no_email: Cette colonne ne contient pas d'adresse email, ou trop d'adresse email invalide.
+                no_recipient: Aucune donnée trouvé.

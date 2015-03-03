@@ -1,0 +1,25 @@
+Ekyna\Bundle\MailingBundle\Entity\Campaign:
+    "mailing_campaign (template)":
+        fromEmail: <email()>
+        fromName: <name()>
+        subject: <sentence(5)>
+        template: default
+        content: <text(1024)>
+    "mailing_campaign_test (extends mailing_campaign)":
+        name: Campaign test name
+    "mailing_campaign_test_{1..3} (extends mailing_campaign)":
+        name: Campaign <current()> name
+
+Ekyna\Bundle\MailingBundle\Entity\Recipient:
+    "mailing_recipient_{1..20}":
+        email: <email()>
+        firstName: <firstName()>
+        lastName: <lastName()>
+
+Ekyna\Bundle\MailingBundle\Entity\RecipientList:
+    "mailing_recipientList_test":
+        name: Recipient list test name
+        recipients: <numberBetween(5, 10)>x @mailing_recipient_*
+    "mailing_recipientList_{1..3}":
+        name: Recipient list <current()> name
+        recipients: <numberBetween(5, 10)>x @mailing_recipient_*

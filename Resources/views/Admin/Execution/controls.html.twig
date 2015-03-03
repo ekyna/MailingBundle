@@ -1,0 +1,21 @@
+<div class="actions" style="overflow: hidden">
+    <div style="float:left;line-height:22px;">
+        Statut&nbsp;&nbsp;{{ mail_execution_state(execution) }}
+    </div>
+    <div style="float:right;line-height:24px;">
+        {% spaceless %}
+            {% if sm_can(execution, 'unlock') %}
+                {# Unlock #}
+                {{ mail_execution_btn(execution, 'unlock') }}
+            {% elseif sm_can(execution, 'lock') %}
+                {# Lock #}
+                {{ mail_execution_btn(execution, 'lock') }}
+            {% endif %}
+            {# Start #}
+            {{ mail_execution_btn(execution, 'start') }}
+            {# Stop #}
+            {{ mail_execution_btn(execution, 'stop') }}
+        {% endspaceless %}
+    </div>
+</div>
+{{ mail_execution_progress(execution) }}

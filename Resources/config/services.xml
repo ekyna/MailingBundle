@@ -1,0 +1,159 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="ekyna_mailing.recipient.class">Ekyna\Bundle\MailingBundle\Entity\Recipient</parameter>
+        <parameter key="ekyna_mailing.recipientExecution.class">Ekyna\Bundle\MailingBundle\Entity\RecipientExecution</parameter>
+
+        <parameter key="ekyna_mailing.campaign.form_type.class">Ekyna\Bundle\MailingBundle\Form\Type\CampaignType</parameter>
+        <parameter key="ekyna_mailing.recipient.form_type.class">Ekyna\Bundle\MailingBundle\Form\Type\RecipientType</parameter>
+
+        <parameter key="ekyna_mailing.recipient.table_type.class">Ekyna\Bundle\MailingBundle\Table\Type\RecipientType</parameter>
+    </parameters>
+
+    <services>
+
+        <!-- Form types -->
+        <service id="ekyna_mailing.campaign.form_type"
+                 class="%ekyna_mailing.campaign.form_type.class%">
+            <argument>%ekyna_mailing.campaign.class%</argument>
+            <call method="setTemplates">
+                <argument>%ekyna_mailing.templates%</argument>
+            </call>
+            <tag name="form.type" alias="ekyna_mailing_campaign" />
+        </service>
+        <service id="ekyna_mailing.recipient.form_type"
+                 class="%ekyna_mailing.recipient.form_type.class%">
+            <argument>%ekyna_mailing.recipient.class%</argument>
+            <tag name="form.type" alias="ekyna_mailing_recipient" />
+        </service>
+        <service id="ekyna_mailing.add_recipient.form_type"
+                 class="Ekyna\Bundle\MailingBundle\Form\Type\AddRecipientType">
+            <tag name="form.type" alias="ekyna_mailing_add_recipient" />
+        </service>
+        <service id="ekyna_mailing.import_recipient.form_type"
+                 class="Ekyna\Bundle\MailingBundle\Form\Type\ImportRecipientType">
+            <tag name="form.type" alias="ekyna_mailing_import_recipient" />
+        </service>
+
+        <!-- Table types -->
+        <service id="ekyna_mailing.recipient.table_type"
+                 class="%ekyna_mailing.recipient.table_type.class%">
+            <argument>%ekyna_mailing.recipient.class%</argument>
+            <tag name="table.type" alias="ekyna_mailing_recipient" />
+        </service>
+        <!-- Table columns type -->
+        <service id="ekyna_mailing.execution_type.column_type"
+                 class="Ekyna\Bundle\MailingBundle\Table\Type\Column\ExecutionTypeType">
+            <tag name="table.column_type" alias="ekyna_mailing_execution_type" />
+        </service>
+        <service id="ekyna_mailing.execution_state.column_type"
+                 class="Ekyna\Bundle\MailingBundle\Table\Type\Column\ExecutionStateType">
+            <tag name="table.column_type" alias="ekyna_mailing_execution_state" />
+        </service>
+
+        <!-- Execution renderer -->
+        <service id="ekyna_mailing.execution.renderer"
+                 class="Ekyna\Bundle\MailingBundle\Execution\Renderer">
+            <argument type="service" id="twig" />
+            <argument type="service" id="router" />
+            <argument>%ekyna_mailing.templates%</argument>
+            <argument>%ekyna_mailing.tracker_config%</argument>
+        </service>
+
+        <!-- Execution locked -->
+        <service id="ekyna_mailing.execution.locker"
+                 class="Ekyna\Bundle\MailingBundle\Execution\Locker">
+            <argument type="service" id="doctrine.orm.default_entity_manager" />
+            <argument>%ekyna_mailing.recipientExecution.class%</argument>
+        </service>
+
+        <!-- Execution runner -->
+        <service id="ekyna_mailing.execution.runner"
+                 class="Ekyna\Bundle\MailingBundle\Execution\Runner">
+            <argument type="service" id="doctrine.orm.default_entity_manager" />
+            <argument type="service" id="sm.factory" />
+            <argument type="service" id="ekyna_mailing.execution.renderer" />
+            <argument type="service" id="mailer" />
+            <argument>%ekyna_mailing.recipientExecution.class%</argument>
+        </service>
+
+        <!-- Transition handler -->
+        <service id="ekyna_mailing.execution.transition"
+                 class="Ekyna\Bundle\MailingBundle\Execution\Transition">
+            <argument type="service" id="doctrine.orm.default_entity_manager" />
+            <argument>%ekyna_mailing.recipientExecution.class%</argument>
+        </service>
+
+        <!-- Subscriber -->
+        <service id="ekyna_mailing.subscriber"
+                 class="Ekyna\Bundle\MailingBundle\Subscriber\Subscriber">
+            <argument type="service" id="doctrine.orm.default_entity_manager" />
+            <argument type="service" id="validator" />
+            <argument type="service" id="ekyna_user.user.repository" />
+            <argument type="service" id="ekyna_mailing.recipient.repository" />
+        </service>
+
+        <!-- Recipient providers -->
+        <service id="ekyna_mailing.recipient_provider.registry"
+                 class="Ekyna\Bundle\MailingBundle\Provider\RecipientProviderRegistry" />
+        <service id="ekyna_mailing.recipient_provider" abstract="true">
+            <call method="setFormFactory">
+                <argument type="service" id="form.factory" />
+            </call>
+        </service>
+        <service id="ekyna_mailing.recipient_provider.new"
+                 class="Ekyna\Bundle\MailingBundle\Provider\NewRecipientProvider"
+                 parent="ekyna_mailing.recipient_provider">
+            <tag name="ekyna_mailing.recipient_provider" alias="new_recipient_provider" />
+        </service>
+        <service id="ekyna_mailing.recipient_provider.add"
+                 class="Ekyna\Bundle\MailingBundle\Provider\AddRecipientProvider"
+                 parent="ekyna_mailing.recipient_provider">
+            <tag name="ekyna_mailing.recipient_provider" alias="add_recipient_provider" />
+        </service>
+        <service id="ekyna_mailing.recipient_provider.import"
+                 class="Ekyna\Bundle\MailingBundle\Provider\ImportRecipientProvider"
+                 parent="ekyna_mailing.recipient_provider">
+            <argument type="service" id="kernel" />
+            <argument type="service" id="translator" />
+            <tag name="ekyna_mailing.recipient_provider" alias="import_recipient_provider" />
+        </service>
+
+        <!-- Event listeners -->
+        <service id="ekyna_mailing.user.listener"
+                 class="Ekyna\Bundle\MailingBundle\EventListener\UserListener">
+            <argument type="service" id="ekyna_mailing.subscriber" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+        <service id="ekyna_mailing.recipient.listener"
+                 class="Ekyna\Bundle\MailingBundle\EventListener\RecipientListener">
+            <argument type="service" id="ekyna_mailing.subscriber" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+        <service id="ekyna_mailing.execution.listener"
+                 class="Ekyna\Bundle\MailingBundle\EventListener\ExecutionListener">
+            <argument type="service" id="ekyna_mailing.execution.locker" />
+            <argument type="service" id="kernel" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+        <service id="ekyna_mailing.tracker.listener"
+                 class="Ekyna\Bundle\MailingBundle\EventListener\TrackerListener">
+            <argument type="service" id="doctrine.orm.default_entity_manager" />
+            <argument type="service" id="sm.factory" />
+            <argument>%ekyna_mailing.recipientExecution.class%</argument>
+            <argument>%ekyna_mailing.tracker_config%</argument>
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <!-- Twig extensions -->
+        <service id="ekyna_mailing.twig.execution_extension"
+                 class="Ekyna\Bundle\MailingBundle\Twig\ExecutionExtension">
+            <argument type="service" id="sm.factory" />
+            <tag name="twig.extension" />
+        </service>
+
+    </services>
+</container>

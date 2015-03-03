@@ -1,0 +1,38 @@
+{% set stat_total = 0 %}
+{% set stat_sent = 0 %}
+{% set stat_failed = 0 %}
+{% set stat_opened = 0 %}
+{% set stat_visited = 0 %}
+{% for execution in campaign.executions %}
+    {% set stat_total = stat_total + execution.total %}
+    {% set stat_sent = stat_sent + execution.sent %}
+    {% set stat_failed = stat_failed + execution.failed %}
+    {% set stat_opened = stat_opened + execution.opened %}
+    {% set stat_visited = stat_visited + execution.visited %}
+{% endfor %}
+<div class="row show-row">
+    <div class="col-md-2 show-label">{{ 'ekyna_mailing.campaign.stats.sent'|trans }}</div>
+    <div class="col-md-10" style="padding-top:8px;">
+        {{- mail_progress_bar({'value': stat_sent, 'max': stat_total, 'theme': 'primary'}) -}}
+    </div>
+</div>
+{% if stat_failed > 0 %}
+<div class="row show-row">
+    <div class="col-md-2 show-label">{{ 'ekyna_mailing.campaign.stats.failed'|trans }}</div>
+    <div class="col-md-10" style="padding-top:8px;">
+        {{- mail_progress_bar({'value': stat_failed, 'max': stat_total, 'theme': 'danger'}) -}}
+    </div>
+</div>
+{% endif %}
+<div class="row show-row">
+    <div class="col-md-2 show-label">{{ 'ekyna_mailing.campaign.stats.opened'|trans }}</div>
+    <div class="col-md-10" style="padding-top:8px;">
+        {{- mail_progress_bar({'value': stat_opened, 'max': stat_total, 'theme': 'info'}) -}}
+    </div>
+</div>
+<div class="row show-row">
+    <div class="col-md-2 show-label">{{ 'ekyna_mailing.campaign.stats.visited'|trans }}</div>
+    <div class="col-md-10" style="padding-top:8px;">
+        {{- mail_progress_bar({'value': stat_visited, 'max': stat_total, 'theme': 'success'}) -}}
+    </div>
+</div>

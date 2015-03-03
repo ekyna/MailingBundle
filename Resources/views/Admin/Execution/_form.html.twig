@@ -1,0 +1,18 @@
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#mail-execution-general" data-toggle="tab">{{ 'ekyna_core.field.general'|trans }}</a></li>
+</ul>
+<div class="panel-body form-body">
+    {{ bootstrap_set_style('horizontal') }}
+    {{ form_errors(form) }}
+    <div class="tab-content">
+	    <div class="tab-pane active" id="mail-execution-general">
+            {{ form_row(form.name) }}
+            <div class="row">
+                <div class="col-md-6">{{ form_row(form.type, {'label_col': 4, 'widget_col': 8}) }}</div>
+                <div class="col-md-6">{{ form_row(form.startDate, {'label_col': 4, 'widget_col': 8}) }}</div>
+            </div>
+            {{ form_row(form.recipientLists) }}
+	    </div>
+        {{ form_rest(form) }}
+    </div>
+</div>

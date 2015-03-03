@@ -1,0 +1,9 @@
+ekyna_mailing_admin:
+    resource: "routing/admin.yml"
+    prefix:   /admin/mailing
+
+ekyna_mailing_tracker_open:
+    path: /mailing/track/open
+    defaults: { _controller: "EkynaMailingBundle:Tracker:trackOpen" }
+    requirements:
+        _method: GET

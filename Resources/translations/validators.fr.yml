@@ -1,0 +1,19 @@
+ekyna_mailing:
+    recipient:
+        unique_email: Un abonné existe déjà pour cette adresse email.
+    campaign:
+        content:
+            relative_urls: >
+                Ce contenu contient des urls relatives, veuillez vérifier que vos liens commencent par http://.
+    execution:
+        invalid_type: Ce type n'est pas valide.
+        mandatory_start_date: Le type "programmée" nécéssite que vous saisissiez une date de début.
+    recipient_provider:
+        import:
+            file:
+                invalid_csv: Veuillez choisir un fichier CSV valide.
+                same_col_num: Veuillez choisir une colonne différente.
+                empty_first_name_col_num: >
+                    Si vous choisissez une colonne pour le nom, veuillez choisir une colonne pour le prénom.
+                empty_last_name_col_num: >
+                    Si vous choisissez une colonne pour le prénom, veuillez choisir une colonne pour le nom.
