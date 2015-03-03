@@ -2,7 +2,8 @@
     "name" : "ekyna/mailing-bundle",
     "description" : "Mailing management",
     "type" : "symfony-bundle",
-    "authors" : [{
+    "authors" : [
+        {
             "name" : "Etienne Dauvergne",
             "homepage" : "http://ekyna.com"
         }
