@@ -6,6 +6,7 @@
                             http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
 <entity name="Ekyna\Bundle\MailingBundle\Entity\Campaign"
+        repository-class="Ekyna\Bundle\MailingBundle\Entity\CampaignRepository"
         table="mail_campaign">
 
         <id name="id" type="integer" column="id">

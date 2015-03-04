@@ -54,6 +54,17 @@
             <tag name="table.column_type" alias="ekyna_mailing_execution_state" />
         </service>
 
+        <!-- Repositories -->
+        <service id="ekyna_mailing.campaign.repository"
+                 class="Ekyna\Bundle\MailingBundle\Entity\CampaignRepository"
+                 factory-service="doctrine.orm.default_entity_manager"
+                 factory-method="getRepository">
+            <argument>%ekyna_mailing.campaign.class%</argument>
+            <call method="setSettingsManager">
+                <argument type="service" id="ekyna_setting.manager" />
+            </call>
+        </service>
+
         <!-- Execution renderer -->
         <service id="ekyna_mailing.execution.renderer"
                  class="Ekyna\Bundle\MailingBundle\Execution\Renderer">

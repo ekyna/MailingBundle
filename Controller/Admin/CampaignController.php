@@ -2,7 +2,6 @@
 
 namespace Ekyna\Bundle\MailingBundle\Controller\Admin;
 
-use Ekyna\Bundle\AdminBundle\Controller\Context;
 use Ekyna\Bundle\AdminBundle\Controller\ResourceController;
 use Ekyna\Bundle\MailingBundle\Entity\Execution;
 use Ekyna\Bundle\MailingBundle\Entity\Recipient;
@@ -52,27 +51,5 @@ class CampaignController extends ResourceController
         $content = $this->get('ekyna_mailing.execution.renderer')->render($recipientExecution);
 
         return new Response($content);
-    }
-
-    /**
-     * Creates a new campaign.
-     *
-     * @param Context $context
-     * @return \Ekyna\Bundle\MailingBundle\Entity\Campaign
-     */
-    protected function createNew(Context $context)
-    {
-        /** @var \Ekyna\Bundle\MailingBundle\Entity\Campaign $campaign */
-        $campaign = parent::createNew($context);
-
-        // TODO move in repo ?
-        $settings = $this->get('ekyna_setting.manager');
-
-        $campaign
-            ->setFromEmail($settings->getParameter('notify.from_email'))
-            ->setFromName($settings->getParameter('notify.form_name'))
-        ;
-
-        return $campaign;
     }
 }
