@@ -20,7 +20,7 @@
     "require" : {
         "php" : ">=5.3.3",
         "ekyna/admin-bundle" : "0.1.*@dev",
-        "winzou/state-machine-bundle" : "dev-master"
+        "winzou/state-machine-bundle": "~0.2"
     },
     "autoload" : {
         "psr-0" : {
