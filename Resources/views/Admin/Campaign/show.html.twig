@@ -29,7 +29,7 @@
 		        {{ show_row(campaign.subject, 'text', 'ekyna_core.field.subject') }}
 		    </div>
             <div class="tab-pane" id="mail-mailing-content">
-                {{ show_row(path('ekyna_mailing_campaign_admin_content', identifiers|merge({'campaignId': campaign.id})), 'tinymce', 'ekyna_core.field.content') }}
+                {{ show_row(path('ekyna_mailing_campaign_admin_content', identifiers|merge({'campaignId': campaign.id})), 'tinymce', 'ekyna_core.field.content', {'height': 600}) }}
             </div>
             <div class="tab-pane" id="mail-mailing-stats">
                 {% include "EkynaMailingBundle:Admin/Campaign:_progress.html.twig" %}

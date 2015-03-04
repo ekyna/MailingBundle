@@ -46,7 +46,7 @@ class CampaignController extends ResourceController
         $recipientExecution
             ->setExecution($execution)
             ->setRecipient($recipient)
-            ->setToken(hash('md5', uniqid()))
+            ->setToken('trackingToken')
         ;
 
         $content = $this->get('ekyna_mailing.execution.renderer')->render($recipientExecution);

@@ -70,6 +70,7 @@ class CampaignType extends ResourceFormType
                 'attr' => array(
                     'class' => 'tinymce',
                     'data-theme' => 'advanced',
+                    'data-config' => json_encode(['remove_script_host' => false])
                 ),
             ))
         ;

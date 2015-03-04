@@ -33,7 +33,7 @@ class CampaignContentValidator extends ConstraintValidator
         if (preg_match_all('`<a\s[^>]*href="([^"]*?)"[^>]*>(.*)</a>`i', $content, $matches, PREG_SET_ORDER)) {
             foreach ($matches as $match) {
                 if (!preg_match($urlRegex, $match[1]) && !preg_match($emailRegex, $match[1])) {
-                    var_dump($match[1]);
+                    $this->context->addViolation($constraint->relativeUrls);
                     break;
                 }
             }
