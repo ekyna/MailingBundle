@@ -52,6 +52,27 @@
         <constraint name="Ekyna\Bundle\MailingBundle\Validator\Constraints\Execution" />
     </class>
 
+    <class name="Ekyna\Bundle\MailingBundle\Entity\RecipientExecution">
+        <property name="execution">
+            <constraint name="NotNull" />
+        </property>
+        <property name="recipient">
+            <constraint name="NotNull" />
+        </property>
+        <property name="token">
+            <constraint name="NotNull" />
+        </property>
+        <property name="state">
+            <constraint name="NotNull" />
+        </property>
+    </class>
+
+    <class name="Ekyna\Bundle\MailingBundle\Entity\RecipientList">
+        <property name="name">
+            <constraint name="NotBlank" />
+        </property>
+    </class>
+
     <class name="Ekyna\Bundle\MailingBundle\Model\ImportRecipients">
         <constraint name="Ekyna\Bundle\MailingBundle\Validator\Constraints\ImportRecipients" />
         <property name="file">
