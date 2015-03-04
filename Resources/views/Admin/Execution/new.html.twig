@@ -14,12 +14,3 @@
     {{ ui_form_footer(form) }}
 </form>
 {% endblock %}
-
-{% block stylesheets -%}
-{{ parent() }}
-{% stylesheets output='css/characteristics.css' filter='cssrewrite, ?yui_css' debug=false
-'@EkynaCharacteristicsBundle/Resources/public/css/characteristics.css'
-%}
-<link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
-{%- endstylesheets %}
-{% endblock stylesheets %}
