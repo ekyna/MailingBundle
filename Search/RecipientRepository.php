@@ -13,7 +13,14 @@ use FOS\ElasticaBundle\Repository;
  */
 class RecipientRepository extends Repository implements SearchRepositoryInterface
 {
-    public function defaultSearch($text)
+    /**
+     * Search recipients.
+     *
+     * @param string $text
+     * @param integer $limit
+     * @return \Ekyna\Bundle\MailingBundle\Entity\Recipient[]
+     */
+    public function defaultSearch($text, $limit = 10)
     {
         if (0 == strlen($text)) {
             $query = new Query\MatchAll();
@@ -25,6 +32,6 @@ class RecipientRepository extends Repository implements SearchRepositoryInterfac
             ;
         }
 
-        return $this->find($query);
+        return $this->find($query, $limit);
     }
 }
