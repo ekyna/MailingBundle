@@ -42,9 +42,6 @@ class EkynaMailingExtension extends AbstractExtension implements PrependExtensio
         if (array_key_exists('AsseticBundle', $bundles)) {
             $this->configureAsseticBundle($container);
         }
-        if (array_key_exists('FOSElasticaBundle', $bundles)) {
-            $this->configureFOSElasticaBundle($container);
-        }
     }
 
     /**
@@ -56,40 +53,6 @@ class EkynaMailingExtension extends AbstractExtension implements PrependExtensio
     {
         $container->prependExtensionConfig('assetic', array(
             'bundles' => array('EkynaMailingBundle')
-        ));
-    }
-
-    /**
-     * Configures the FOS elastica bundle.
-     *
-     * @param ContainerBuilder $container
-     */
-    protected function configureFOSElasticaBundle(ContainerBuilder $container)
-    {
-        $container->prependExtensionConfig('fos_elastica', array(
-            'indexes' => array(
-                'search' => array(
-                    'types' => array(
-                        'ekyna_mailing_recipient' => array(
-                            'mappings' => array(
-                                'firstName' => array('search_analyzer' => 'fr_search', 'index_analyzer' => 'fr_index'),
-                                'lastName' => array('search_analyzer' => 'fr_search', 'index_analyzer' => 'fr_index'),
-                                'email' => array('search_analyzer' => 'fr_search', 'index_analyzer' => 'fr_index'),
-                            ),
-                            'persistence' => array(
-                                'driver' => 'orm',
-                                'model' => '%ekyna_mailing.recipient.class%',
-                                'provider' => null,
-                                'listener' => array(
-                                    'immediate' => null,
-                                ),
-                                'finder' => null,
-                                'repository' => 'Ekyna\Bundle\MailingBundle\Search\RecipientRepository',
-                            ),
-                        ),
-                    ),
-                ),
-            ),
         ));
     }
 }

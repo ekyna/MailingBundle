@@ -1,0 +1,17 @@
+fos_elastica:
+    indexes:
+        search:
+            types:
+                ekyna_mailing_recipient:
+                    mappings:
+                        firstName:  {search_analyzer: fr_search, index_analyzer: fr_index}
+                        lastName:   {search_analyzer: fr_search, index_analyzer: fr_index}
+                        email:      {search_analyzer: fr_search, index_analyzer: fr_index}
+                    persistence:
+                        driver: orm
+                        model: %ekyna_mailing.recipient.class%
+                        provider:
+                            batch_size: 25
+                        listener: ~
+                        finder: ~
+                        repository: Ekyna\Bundle\MailingBundle\Search\RecipientRepository
