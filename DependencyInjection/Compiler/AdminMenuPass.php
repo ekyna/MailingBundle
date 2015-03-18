@@ -24,7 +24,7 @@ class AdminMenuPass implements CompilerPassInterface
             'name'     => 'mailing',
             'label'    => 'ekyna_mailing.menu',
             'icon'     => 'envelope',
-            'position' => 90,
+            'position' => 70,
         )));
         $pool->addMethodCall('createEntry', array('mailing', array(
             'name'     => 'campaigns',
