@@ -14,8 +14,8 @@
         </id>
 
         <field name="name" type="string" column="name" length="255"/>
-        <field name="fromEmail" type="string" column="fromEmail" length="255"/>
-        <field name="fromName" type="string" column="fromName" length="255"/>
+        <field name="fromEmail" type="string" column="from_email" length="255"/>
+        <field name="fromName" type="string" column="from_name" length="255"/>
         <field name="subject" type="string" column="subject" length="255"/>
         <field name="template" type="string" column="template" length="64"/>
         <field name="content" type="text" column="content"/>

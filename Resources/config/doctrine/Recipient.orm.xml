@@ -14,8 +14,8 @@
         </id>
 
         <field name="email" type="string" column="email" length="255"/>
-        <field name="firstName" type="string" column="firstName" length="64" nullable="true" />
-        <field name="lastName" type="string" column="lastName" length="64" nullable="true" />
+        <field name="firstName" type="string" column="first_name" length="64" nullable="true" />
+        <field name="lastName" type="string" column="last_name" length="64" nullable="true" />
 
         <one-to-one field="user" target-entity="Ekyna\Bundle\UserBundle\Entity\User">
             <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE" nullable="true" />
