@@ -5,9 +5,10 @@ namespace Ekyna\Bundle\MailingBundle\Controller\Admin;
 use Ekyna\Bundle\AdminBundle\Controller\Context;
 use Ekyna\Bundle\AdminBundle\Controller\ResourceController;
 use Ekyna\Bundle\MailingBundle\Entity\Execution;
+use Ekyna\Bundle\MailingBundle\Event\RecipientEvent;
+use Ekyna\Bundle\MailingBundle\Event\RecipientEvents;
 use Ekyna\Component\Table\Table;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -67,6 +68,11 @@ abstract class RecipientsSubjectController extends ResourceController
                     ), 'info');
                 }
 
+                foreach ($recipients as $recipient) {
+                    $event = new RecipientEvent($recipient);
+                    $this->get('event_dispatcher')->dispatch(RecipientEvents::POST_CREATE, $event);
+                }
+
                 return $this->redirect($action);
             }
         }
@@ -77,85 +83,6 @@ abstract class RecipientsSubjectController extends ResourceController
         }
 
         return null;
-    }
-
-    /**
-     * Creates the add recipient form.
-     *
-     * @param Context $context
-     * @return \Symfony\Component\Form\FormInterface|\Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    private function createAddRecipientForm(Context $context)
-    {
-        /** @var \Ekyna\Bundle\MailingBundle\Model\RecipientsSubjectInterface $resource */
-        $resource = $context->getResource();
-
-        $action = $this->getResourceHelper()->generateResourcePath($resource);
-
-        $form = $this->createForm('ekyna_mailing_add_recipient', null, array(
-            'action' => $action,
-            'attr' => array('class' => 'form-horizontal'),
-        ))
-        ->add('actions', 'form_actions', [
-            'buttons' => [
-                'save' => ['type' => 'submit', 'options' => ['label' => 'ekyna_core.button.save']],
-            ]
-        ]);
-
-        $form->handleRequest($context->getRequest());
-        if ($form->isValid()) {
-            /** @var \Ekyna\Bundle\MailingBundle\Entity\Recipient $recipient */
-            $recipient = $form->get('recipient')->getData();
-
-            $resource->addRecipient($recipient);
-
-            // TODO use ResourceManager
-            $event = $this->getOperator()->update($resource);
-            $event->toFlashes($this->getFlashBag());
-
-            return $this->redirect($action);
-        }
-
-        return $form;
-    }
-
-    /**
-     * Creates the new recipient form.
-     *
-     * @param Context $context
-     * @return \Symfony\Component\Form\FormInterface|\Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    private function createNewRecipientForm(Context $context)
-    {
-        /** @var \Ekyna\Bundle\MailingBundle\Model\RecipientsSubjectInterface $resource */
-        $resource = $context->getResource();
-
-        $action = $this->getResourceHelper()->generateResourcePath($resource);
-
-        $form = $this->createForm('ekyna_mailing_recipient', null, array(
-            'action' => $action,
-            'attr' => array('class' => 'form-horizontal'),
-        ))
-        ->add('actions', 'form_actions', [
-            'buttons' => [
-                'save' => ['type' => 'submit', 'options' => ['label' => 'ekyna_core.button.save']],
-            ]
-        ]);
-
-        $form->handleRequest($context->getRequest());
-        if ($form->isValid()) {
-            /** @var \Ekyna\Bundle\MailingBundle\Entity\Recipient $recipient */
-            $recipient = $form->getData();
-            $resource->addRecipient($recipient);
-
-            // TODO use ResourceManager
-            $event = $this->getOperator()->update($resource);
-            $event->toFlashes($this->getFlashBag());
-
-            return $this->redirect($action);
-        }
-
-        return $form;
     }
 
     /**

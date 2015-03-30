@@ -87,7 +87,7 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('parent')->end()
                                 ->scalarNode('entity')->defaultValue('Ekyna\Bundle\MailingBundle\Entity\Campaign')->end()
                                 ->scalarNode('controller')->defaultValue('Ekyna\Bundle\MailingBundle\Controller\Admin\CampaignController')->end()
-                                ->scalarNode('repository')->end()
+                                ->scalarNode('repository')->defaultValue('Ekyna\Bundle\MailingBundle\Entity\CampaignRepository')->end()
                                 ->scalarNode('form')->defaultValue('Ekyna\Bundle\MailingBundle\Form\Type\CampaignType')->end()
                                 ->scalarNode('table')->defaultValue('Ekyna\Bundle\MailingBundle\Table\Type\CampaignType')->end()
                                 ->scalarNode('event')->end()
