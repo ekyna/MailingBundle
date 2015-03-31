@@ -5,6 +5,7 @@ namespace Ekyna\Bundle\MailingBundle\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class RunCommand
@@ -45,6 +46,9 @@ EOT
         }
 
         $container = $this->getContainer();
+
+        $container->enterScope('request');
+        $container->set('request', new Request(), 'request');
 
         $repository = $container->get('ekyna_mailing.execution.repository');
 

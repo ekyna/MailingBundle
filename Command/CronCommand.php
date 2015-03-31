@@ -6,6 +6,7 @@ use Ekyna\Bundle\MailingBundle\Entity\Execution;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class CronCommand
@@ -39,6 +40,9 @@ EOT
     protected function execute(Input\InputInterface $input, OutputInterface $output)
     {
         $container = $this->getContainer();
+
+        $container->enterScope('request');
+        $container->set('request', new Request(), 'request');
 
         $repository = $container->get('ekyna_mailing.execution.repository');
 

@@ -100,7 +100,7 @@ class Runner
 
                 // Send email
                 $this->send($re);
-                sleep(4);
+                //sleep(4);
 
                 // Checks that the execution has not been abort.
                 $this->em->refresh($execution);
