@@ -3,6 +3,8 @@
 namespace Ekyna\Bundle\MailingBundle\Subscriber;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Ekyna\Bundle\AdminBundle\Event\ResourceEvent;
+use Ekyna\Bundle\AdminBundle\Event\ResourceMessage;
 use Ekyna\Bundle\MailingBundle\Entity\Recipient;
 use Ekyna\Bundle\MailingBundle\Entity\RecipientRepository;
 use Ekyna\Bundle\UserBundle\Entity\UserRepository;
@@ -36,10 +38,14 @@ class Subscriber implements SubscriberInterface
      */
     protected $recipientRepository;
 
+
     /**
      * Constructor.
      *
-     * @param EntityManagerInterface $em
+     * @param EntityManagerInterface $em,
+     * @param ValidatorInterface $validator,
+     * @param UserRepository $userRepository,
+     * @param RecipientRepository $recipientRepository
      */
     public function __construct(
         EntityManagerInterface $em,
@@ -57,8 +63,9 @@ class Subscriber implements SubscriberInterface
      * Synchronizes the recipient's data with the given user.
      *
      * @param UserInterface $user
+     * @param ResourceEvent $event
      */
-    public function synchronizeByUser(UserInterface $user)
+    public function synchronizeByUser(UserInterface $user, ResourceEvent $event = null)
     {
         if (null !== $recipient = $this->findRecipientByUser($user)) {
             $doPersist = false;
@@ -79,20 +86,29 @@ class Subscriber implements SubscriberInterface
                 $doPersist = true;
             }
 
-            if ($doPersist && $this->validator->validate($recipient)) {
-                $this->em->persist($recipient);
-                $this->em->flush($recipient);
+            if ($doPersist) {
+                /** @var \Symfony\Component\Validator\ConstraintViolationListInterface $list */
+                $list = $this->validator->validate($recipient);
+                if (0 === $list->count()) {
+                    $this->em->persist($recipient);
+                    $this->em->flush($recipient);
+                } elseif (null !== $event) {
+                    $event->addMessage(new ResourceMessage(
+                        'Echec de la validation lors de la synchronisation de l\'abonné.', // TODO translate
+                        ResourceMessage::TYPE_WARNING
+                    ));
+                }
             }
-            // TODO validation errors
         }
     }
 
     /**
      * Synchronizes the user's data with the given recipient.
      *
-     * @param Recipient $recipient
+     * @param Recipient     $recipient
+     * @param ResourceEvent $event
      */
-    public function synchronizeByRecipient(Recipient $recipient)
+    public function synchronizeByRecipient(Recipient $recipient, ResourceEvent $event = null)
     {
         if (null === $recipient->getUser() && null !== $user = $this->findUserByRecipient($recipient)) {
             $recipient->setUser($user);
@@ -108,7 +124,18 @@ class Subscriber implements SubscriberInterface
                 $this->em->persist($recipient);
                 $this->em->flush($recipient);
             }
-            // TODO validation errors
+
+            /** @var \Symfony\Component\Validator\ConstraintViolationListInterface $list */
+            $list = $this->validator->validate($recipient);
+            if (0 === $list->count()) {
+                $this->em->persist($recipient);
+                $this->em->flush($recipient);
+            } elseif (null !== $event) {
+                $event->addMessage(new ResourceMessage(
+                    'Echec de la validation lors de la synchronisation de l\'abonné.', // TODO translate
+                    ResourceMessage::TYPE_WARNING
+                ));
+            }
         }
     }
 

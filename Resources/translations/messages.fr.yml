@@ -118,7 +118,9 @@ ekyna_mailing:
     recipient_provider:
         new: Nouvel abonné
         add: Ajouter un abonné
-        added_count: %count% abonné(s) ont été ajouté(s).
+        message:
+            added_count: %count% abonné(s) ont été ajouté(s).
+            providing_failed: Echec lors de l'ajout de nouveaux abonnés.
         import:
             label: Importer
             file: Fichier CSV
@@ -127,7 +129,7 @@ ekyna_mailing:
             email_col_num: Colonne adresse email
             first_name_col_num: Colonne prénom
             last_name_col_num: Colonne nom
-            error:
+            message:
                 unreadable_file: Echec lors de la lecture du fichier.
                 column_not_exists: Aucun donnée trouvé dans cette colonne.
                 no_email: Cette colonne ne contient pas d'adresse email, ou trop d'adresse email invalide.

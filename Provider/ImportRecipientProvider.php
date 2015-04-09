@@ -120,19 +120,19 @@ class ImportRecipientProvider extends AbstractRecipientProvider
                     if (0 == $count) {
                         if (!array_key_exists($emailColNum, $data)) {
                             throw new ImportProviderException(
-                                'ekyna_mailing.recipient_provider.import.error.column_not_exists',
+                                'ekyna_mailing.recipient_provider.import.message.column_not_exists',
                                 'emailColNum'
                             );
                         }
                         if (false !== $firstNameColNum && !array_key_exists($firstNameColNum, $data)) {
                             throw new ImportProviderException(
-                                'ekyna_mailing.recipient_provider.import.error.column_not_exists',
+                                'ekyna_mailing.recipient_provider.import.message.column_not_exists',
                                 'firstNameColNum'
                             );
                         }
                         if (false !== $lastNameColNum && !array_key_exists($lastNameColNum, $data)) {
                             throw new ImportProviderException(
-                                'ekyna_mailing.recipient_provider.import.error.column_not_exists',
+                                'ekyna_mailing.recipient_provider.import.message.column_not_exists',
                                 'lastNameColNum'
                             );
                         }
@@ -143,7 +143,7 @@ class ImportRecipientProvider extends AbstractRecipientProvider
                         $emailErrorCount++;
                         if (5 < $emailErrorCount) {
                             throw new ImportProviderException(
-                                'ekyna_mailing.recipient_provider.import.error.no_email',
+                                'ekyna_mailing.recipient_provider.import.message.no_email',
                                 'emailColNum'
                             );
                         }
@@ -173,14 +173,14 @@ class ImportRecipientProvider extends AbstractRecipientProvider
                     $result = $recipients;
                 } else {
                     throw new ImportProviderException(
-                        'ekyna_mailing.recipient_provider.import.error.no_recipient',
+                        'ekyna_mailing.recipient_provider.import.message.no_recipient',
                         'file'
                     );
                 }
 
             } else {
                 throw new ImportProviderException(
-                    'ekyna_mailing.recipient_provider.import.error.unreadable_file',
+                    'ekyna_mailing.recipient_provider.import.message.unreadable_file',
                     'file'
                 );
             }

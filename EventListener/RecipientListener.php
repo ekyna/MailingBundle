@@ -36,7 +36,7 @@ class RecipientListener implements EventSubscriberInterface
      */
     public function onPostCreate(RecipientEvent $event)
     {
-        $this->subscriber->synchronizeByRecipient($event->getRecipient());
+        $this->subscriber->synchronizeByRecipient($event->getRecipient(), $event);
     }
 
     /**
@@ -46,7 +46,7 @@ class RecipientListener implements EventSubscriberInterface
      */
     public function onPostUpdate(RecipientEvent $event)
     {
-        $this->subscriber->synchronizeByRecipient($event->getRecipient());
+        $this->subscriber->synchronizeByRecipient($event->getRecipient(), $event);
     }
 
     /**

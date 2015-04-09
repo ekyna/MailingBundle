@@ -25,4 +25,4 @@ interface SubscriberInterface
      * @param Recipient $recipient
      */
     public function synchronizeByRecipient(Recipient $recipient);
-} 
+}

@@ -50,6 +50,12 @@
 
     <class name="Ekyna\Bundle\MailingBundle\Entity\Execution">
         <constraint name="Ekyna\Bundle\MailingBundle\Validator\Constraints\Execution" />
+        <property name="recipients">
+            <constraint name="Valid" />
+        </property>
+        <property name="recipientLists">
+            <constraint name="Valid" />
+        </property>
     </class>
 
     <class name="Ekyna\Bundle\MailingBundle\Entity\RecipientExecution">
@@ -70,6 +76,9 @@
     <class name="Ekyna\Bundle\MailingBundle\Entity\RecipientList">
         <property name="name">
             <constraint name="NotBlank" />
+        </property>
+        <property name="recipients">
+            <constraint name="Valid" />
         </property>
     </class>
 

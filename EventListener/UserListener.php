@@ -36,7 +36,7 @@ class UserListener implements EventSubscriberInterface
      */
     public function onPostCreate(UserEvent $event)
     {
-        $this->subscriber->synchronizeByUser($event->getUser());
+        $this->subscriber->synchronizeByUser($event->getUser(), $event);
     }
 
     /**
@@ -46,7 +46,7 @@ class UserListener implements EventSubscriberInterface
      */
     public function onPostUpdate(UserEvent $event)
     {
-        $this->subscriber->synchronizeByUser($event->getUser());
+        $this->subscriber->synchronizeByUser($event->getUser(), $event);
     }
 
     /**

@@ -44,6 +44,7 @@ abstract class RecipientsSubjectController extends ResourceController
         }
 
         $action = $this->getResourceHelper()->generateResourcePath($resource);
+        $recipientRepo = $this->get('ekyna_mailing.recipient.repository');
 
         $providers = $this->get('ekyna_mailing.recipient_provider.registry')->getProviders();
         foreach ($providers as $provider) {
@@ -53,24 +54,36 @@ abstract class RecipientsSubjectController extends ResourceController
                 $count = 0;
                 foreach ($recipients as $recipient) {
                     if (!$resource->hasRecipientByEmail($recipient->getEmail())) {
-                        $resource->addRecipient($recipient);
+                        /** @var \Ekyna\Bundle\MailingBundle\Entity\Recipient $duplicate */
+                        if (null !== $duplicate = $recipientRepo->findOneBy(['email' => $recipient->getEmail()])) {
+                            $resource->addRecipient($duplicate);
+                        } else {
+                            $resource->addRecipient($recipient);
+                        }
                         $count++;
                     }
                 }
 
-                // TODO use ResourceManager
-                $event = $this->getOperator()->update($resource);
-                $event->toFlashes($this->getFlashBag());
-                if (0 < $count && !$event->isPropagationStopped()) {
-                    $this->addFlash($this->getTranslator()->trans(
-                        'ekyna_mailing.recipient_provider.added_count',
-                        array('%count%' => $count)
-                    ), 'info');
-                }
+                $errorList = $this->getValidator()->validate($resource);
+                if (0 === $errorList->count()) {
+                    // TODO use ResourceManager
+                    $event = $this->getOperator()->update($resource);
+                    $event->toFlashes($this->getFlashBag());
+                    if (0 < $count && !$event->isPropagationStopped()) {
+                        $this->addFlash($this->getTranslator()->trans(
+                            'ekyna_mailing.recipient_provider.message.added_count',
+                            array('%count%' => $count)
+                        ), 'info');
+                    }
 
-                foreach ($recipients as $recipient) {
-                    $event = new RecipientEvent($recipient);
-                    $this->get('event_dispatcher')->dispatch(RecipientEvents::POST_CREATE, $event);
+                    foreach ($recipients as $recipient) {
+                        $event = new RecipientEvent($recipient);
+                        $this->get('event_dispatcher')->dispatch(RecipientEvents::POST_CREATE, $event);
+                    }
+                } else {
+                    $this->addFlash($this->getTranslator()->trans(
+                        'ekyna_mailing.recipient_provider.message.providing_failed'
+                    ), 'warning');
                 }
 
                 return $this->redirect($action);
