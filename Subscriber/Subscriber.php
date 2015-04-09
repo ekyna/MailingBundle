@@ -120,11 +120,6 @@ class Subscriber implements SubscriberInterface
                 $recipient->setLastName($user->getLastName());
             }
 
-            if ($this->validator->validate($recipient)) {
-                $this->em->persist($recipient);
-                $this->em->flush($recipient);
-            }
-
             /** @var \Symfony\Component\Validator\ConstraintViolationListInterface $list */
             $list = $this->validator->validate($recipient);
             if (0 === $list->count()) {
