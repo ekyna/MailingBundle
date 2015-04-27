@@ -4,7 +4,6 @@ namespace Ekyna\Bundle\MailingBundle\DependencyInjection;
 
 use Ekyna\Bundle\AdminBundle\DependencyInjection\AbstractExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\Reference;
 
@@ -13,7 +12,7 @@ use Symfony\Component\DependencyInjection\Reference;
  * @package Ekyna\Bundle\MailingBundle\DependencyInjection
  * @author Étienne Dauvergne <contact@ekyna.com>
  */
-class EkynaMailingExtension extends AbstractExtension implements PrependExtensionInterface
+class EkynaMailingExtension extends AbstractExtension
 {
     /**
      * {@inheritDoc}
