@@ -3,6 +3,7 @@ fos_elastica:
         search:
             types:
                 ekyna_mailing_recipient:
+                    _all: {enabled: false}
                     mappings:
                         firstName:  {search_analyzer: fr_search, index_analyzer: fr_index}
                         lastName:   {search_analyzer: fr_search, index_analyzer: fr_index}
