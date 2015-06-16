@@ -19,7 +19,7 @@
     ],
     "require" : {
         "php" : ">=5.3.3",
-        "ekyna/admin-bundle" : "0.1.*@dev",
+        "ekyna/admin-bundle" : "0.3.*@dev",
         "winzou/state-machine-bundle": "~0.2"
     },
     "autoload" : {
@@ -30,7 +30,7 @@
     "target-dir" : "Ekyna/Bundle/MailingBundle",
     "extra" : {
         "branch-alias" : {
-            "dev-master" : "0.1.x-dev"
+            "dev-master" : "0.3.x-dev"
         }
     }
 }
