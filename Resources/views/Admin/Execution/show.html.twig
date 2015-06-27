@@ -60,9 +60,5 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {% javascripts output='js/admin-mailing-execution.js' filter='?yui_js'
-        '@EkynaMailingBundle/Resources/asset/js/controls.js'
-    %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+    <script type="text/javascript">require(['bundles/ekynamailing/js/controls']);</script>
 {% endblock %}
