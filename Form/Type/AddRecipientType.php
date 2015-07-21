@@ -15,7 +15,7 @@ class AddRecipientType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options = array())
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('recipient', 'ekyna_core_entity_search', array(
