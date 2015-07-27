@@ -30,12 +30,12 @@ class Recipient
     /**
      * @var string
      */
-    protected $firstName;
+    protected $firstName; // TODO remove (use only  full name)
 
     /**
      * @var string
      */
-    protected $lastName;
+    protected $lastName; // TODO remove (use only  full name)
 
     /**
      * @var string (non persisted)

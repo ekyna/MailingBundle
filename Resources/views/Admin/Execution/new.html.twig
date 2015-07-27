@@ -1,16 +1,5 @@
-{% extends "EkynaAdminBundle:Entity:sided.html.twig" %}
-
-{% block title %}
-<h1>{{ 'ekyna_mailing.execution.header.new'|trans|raw }}</h1>
-{% endblock %}
+{% extends "EkynaAdminBundle:Entity/Default:new.html.twig" %}
 
 {% block actions %}
 {{ admin_resource_btn(campaign, 'show', {'label': 'ekyna_core.button.back'}) }}
-{% endblock %}
-
-{% block main %}
-<form action="{{ path('ekyna_mailing_execution_admin_new', {'campaignId': campaign.id}) }}" {{ form_enctype(form) }} method="post" class="form-horizontal form-with-tabs">
-    {% include "EkynaMailingBundle:Admin/Execution:_form.html.twig" %}
-    {{ ui_form_footer(form) }}
-</form>
 {% endblock %}

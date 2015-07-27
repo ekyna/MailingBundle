@@ -43,7 +43,7 @@ abstract class RecipientsSubjectController extends ResourceController
             }
         }
 
-        $action = $this->getResourceHelper()->generateResourcePath($resource);
+        $action = $this->generateResourcePath($resource);
         $recipientRepo = $this->get('ekyna_mailing.recipient.repository');
 
         $providers = $this->get('ekyna_mailing.recipient_provider.registry')->getProviders();
@@ -128,8 +128,6 @@ abstract class RecipientsSubjectController extends ResourceController
             // TODO validation error flash
         }
 
-        return $this->redirect(
-            $this->getResourceHelper()->generateResourcePath($resource)
-        );
+        return $this->redirect($this->generateResourcePath($resource));
     }
 }

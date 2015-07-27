@@ -1,8 +1,0 @@
-{% extends 'EkynaAdminBundle::base.xml.twig' %}
-
-{% block response %}
-<title>{{ 'ekyna_mailing.execution.header.list'|trans|raw }}</title>
-<list><![CDATA[
-{{ ekyna_table_render(executions) }}
-]]></list>
-{% endblock response %}
