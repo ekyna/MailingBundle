@@ -13,7 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class RecipientType extends ResourceTableType
 {
-    public function buildTable(TableBuilderInterface $builder, array $options = array())
+    public function buildTable(TableBuilderInterface $builder, array $options)
     {
         $deleteButton = $options['delete_button'];
         if (empty($deleteButton)) {

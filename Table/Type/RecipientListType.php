@@ -12,7 +12,7 @@ use Ekyna\Component\Table\TableBuilderInterface;
  */
 class RecipientListType extends ResourceTableType
 {
-    public function buildTable(TableBuilderInterface $builder, array $options = array())
+    public function buildTable(TableBuilderInterface $builder, array $options)
     {
         $builder
             ->addColumn('name', 'anchor', array(
