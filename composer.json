@@ -23,11 +23,10 @@
         "winzou/state-machine-bundle": "~0.2"
     },
     "autoload" : {
-        "psr-0" : {
-            "Ekyna\\Bundle\\MailingBundle" : ""
+        "psr-4" : {
+            "Ekyna\\Bundle\\MailingBundle\\" : ""
         }
     },
-    "target-dir" : "Ekyna/Bundle/MailingBundle",
     "extra" : {
         "branch-alias" : {
             "dev-master" : "0.3.x-dev"
