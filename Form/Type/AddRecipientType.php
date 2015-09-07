@@ -18,7 +18,7 @@ class AddRecipientType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('recipient', 'ekyna_core_entity_search', array(
+            ->add('recipient', 'ekyna_entity_search', array(
                 'label' => 'ekyna_mailing.recipient.label.singular',
                 'required' => true,
                 'entity'   => 'Ekyna\Bundle\MailingBundle\Entity\Recipient',
