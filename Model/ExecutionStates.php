@@ -25,7 +25,7 @@ final class ExecutionStates
      */
     public static function isValid($type)
     {
-        return in_array($type, array(
+        return in_array($type, [
             self::STATE_DESIGN,
             self::STATE_PENDING,
             self::STATE_STARTED,
@@ -33,7 +33,7 @@ final class ExecutionStates
             self::STATE_PAUSED,
             self::STATE_ABORT,
             self::STATE_DONE,
-        ));
+        ]);
     }
 
     /**
@@ -84,7 +84,7 @@ final class ExecutionStates
     {
         $translationBase = 'ekyna_mailing.execution.state.';
 
-        return array(
+        return [
             self::STATE_DESIGN  => $translationBase.self::STATE_DESIGN,
             self::STATE_PENDING => $translationBase.self::STATE_PENDING,
             self::STATE_STARTED => $translationBase.self::STATE_STARTED,
@@ -92,6 +92,6 @@ final class ExecutionStates
             self::STATE_PAUSED  => $translationBase.self::STATE_PAUSED,
             self::STATE_ABORT   => $translationBase.self::STATE_ABORT,
             self::STATE_DONE    => $translationBase.self::STATE_DONE,
-        );
+        ];
     }
 }

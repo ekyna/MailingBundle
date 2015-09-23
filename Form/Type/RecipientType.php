@@ -18,18 +18,18 @@ class RecipientType extends ResourceFormType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', 'text', array(
+            ->add('email', 'text', [
                 'label' => 'ekyna_core.field.email',
                 'required' => true,
-            ))
-            ->add('firstName', 'text', array(
+            ])
+            ->add('firstName', 'text', [
                 'label' => 'ekyna_core.field.first_name',
                 'required' => false,
-            ))
-            ->add('lastName', 'text', array(
+            ])
+            ->add('lastName', 'text', [
                 'label' => 'ekyna_core.field.last_name',
                 'required' => false,
-            ))
+            ])
         ;
     }
 

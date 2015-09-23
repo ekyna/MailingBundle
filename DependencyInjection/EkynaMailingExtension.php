@@ -26,7 +26,7 @@ class EkynaMailingExtension extends AbstractExtension
         $container->setParameter('ekyna_mailing.tracker_config', $config['tracker']);
 
         $def = $container->getDefinition('ekyna_mailing.execution.operator');
-        $def->addMethodCall('setFactory', array(new Reference('sm.factory')));
+        $def->addMethodCall('setFactory', [new Reference('sm.factory')]);
     }
 
     /**
@@ -50,8 +50,8 @@ class EkynaMailingExtension extends AbstractExtension
      */
     protected function configureAsseticBundle(ContainerBuilder $container)
     {
-        $container->prependExtensionConfig('assetic', array(
-            'bundles' => array('EkynaMailingBundle')
-        ));
+        $container->prependExtensionConfig('assetic', [
+            'bundles' => ['EkynaMailingBundle']
+        ]);
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Ekyna\Bundle\MailingBundle\Validator\Constraints;
 
-use Ekyna\Bundle\MailingBundle\Model\ExecutionTypes;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;

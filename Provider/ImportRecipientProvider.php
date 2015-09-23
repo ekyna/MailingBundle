@@ -46,10 +46,10 @@ class ImportRecipientProvider extends AbstractRecipientProvider
     public function buildForm($action)
     {
         $form = $this->formFactory
-            ->create('ekyna_mailing_import_recipient', new ImportRecipients(), array(
+            ->create('ekyna_mailing_import_recipient', new ImportRecipients(), [
                 'action' => $action,
-                'attr' => array('class' => 'form-horizontal'),
-            ))
+                'attr' => ['class' => 'form-horizontal'],
+            ])
             ->add('actions', 'form_actions', [
                 'buttons' => [
                     'save' => ['type' => 'submit', 'options' => ['label' => 'ekyna_core.button.import']],
@@ -196,7 +196,7 @@ class ImportRecipientProvider extends AbstractRecipientProvider
         if (false !== $handle) {
             fclose($handle);
         }
-        @unlink($filePath);
+        unlink($filePath);
 
         return $result;
     }

@@ -4,7 +4,7 @@ namespace Ekyna\Bundle\MailingBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
 
 /**
@@ -20,35 +20,35 @@ class ImportRecipientType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('file', 'file', array(
+            ->add('file', 'file', [
                 'label' => 'ekyna_mailing.recipient_provider.import.file',
-            ))
-            ->add('delimiter', 'text', array(
+            ])
+            ->add('delimiter', 'text', [
                 'label' => 'ekyna_mailing.recipient_provider.import.delimiter',
-            ))
-            ->add('enclosure', 'text', array(
+            ])
+            ->add('enclosure', 'text', [
                 'label' => 'ekyna_mailing.recipient_provider.import.enclosure',
-            ))
-            ->add('emailColNum', 'integer', array(
+            ])
+            ->add('emailColNum', 'integer', [
                 'label' => 'ekyna_mailing.recipient_provider.import.email_col_num',
-            ))
-            ->add('firstNameColNum', 'integer', array(
+            ])
+            ->add('firstNameColNum', 'integer', [
                 'label' => 'ekyna_mailing.recipient_provider.import.first_name_col_num',
                 'required' => false,
-            ))
-            ->add('lastNameColNum', 'integer', array(
+            ])
+            ->add('lastNameColNum', 'integer', [
                 'label' => 'ekyna_mailing.recipient_provider.import.last_name_col_num',
                 'required' => false,
-            ))
+            ])
         ;
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setDefaults(array(
+            ->setDefaults([
                 'data_class' => 'Ekyna\Bundle\MailingBundle\Model\ImportRecipients',
-            ))
+            ])
         ;
     }
 

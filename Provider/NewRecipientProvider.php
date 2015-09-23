@@ -18,10 +18,10 @@ class NewRecipientProvider extends AbstractRecipientProvider
     public function buildForm($action)
     {
         $form = $this->formFactory
-            ->create('ekyna_mailing_recipient', new Recipient(), array(
+            ->create('ekyna_mailing_recipient', new Recipient(), [
                 'action' => $action,
-                'attr' => array('class' => 'form-horizontal'),
-            ))
+                'attr' => ['class' => 'form-horizontal'],
+            ])
             ->add('actions', 'form_actions', [
                 'buttons' => [
                     'save' => ['type' => 'submit', 'options' => ['label' => 'ekyna_core.button.create']],
@@ -43,7 +43,7 @@ class NewRecipientProvider extends AbstractRecipientProvider
 
         $form->handleRequest($request);
         if ($form->isValid()) {
-            return array($form->getData());
+            return [$form->getData()];
         }
 
         return false;

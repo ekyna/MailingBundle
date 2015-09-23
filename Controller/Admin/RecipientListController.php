@@ -21,7 +21,7 @@ class RecipientListController extends RecipientsSubjectController
         $recipientList = $context->getResource();
 
         return $this->getTableFactory()
-            ->createBuilder('ekyna_mailing_recipient', array(
+            ->createBuilder('ekyna_mailing_recipient', [
                 'name' => 'ekyna_mailing.recipient',
                 'customize_qb' => function (QueryBuilder $qb, $alias) use ($recipientList) {
                     $qb
@@ -29,14 +29,14 @@ class RecipientListController extends RecipientsSubjectController
                         ->andWhere('rl.id = :resource')
                         ->setParameter('resource', $recipientList);
                 },
-                'delete_button' => array(
+                'delete_button' => [
                     'label' => 'ekyna_core.button.unlink',
                     'class' => 'danger',
                     'route_name' => 'ekyna_mailing_recipientList_admin_recipients_unlink',
                     'route_parameters' => $context->getIdentifiers(true),
-                    'route_parameters_map' => array('recipientId' => 'id'),
-                )
-            ))
+                    'route_parameters_map' => ['recipientId' => 'id'],
+                ]
+            ])
             ->getTable($context->getRequest());
     }
 }

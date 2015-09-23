@@ -4,7 +4,7 @@ namespace Ekyna\Bundle\MailingBundle\Table\Type;
 
 use Ekyna\Bundle\AdminBundle\Table\Type\ResourceTableType;
 use Ekyna\Component\Table\TableBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class RecipientType
@@ -13,76 +13,83 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class RecipientType extends ResourceTableType
 {
+    /**
+     * {@inheritdoc}
+     */
     public function buildTable(TableBuilderInterface $builder, array $options)
     {
         $deleteButton = $options['delete_button'];
         if (empty($deleteButton)) {
-            $deleteButton = array(
+            $deleteButton = [
                 'label' => 'ekyna_core.button.remove',
                 'class' => 'danger',
                 'route_name' => 'ekyna_mailing_recipient_admin_remove',
-                'route_parameters_map' => array(
+                'route_parameters_map' => [
                     'recipientId' => 'id'
-                ),
-            );
+                ],
+            ];
         }
 
         $builder
-            ->addColumn('email', 'anchor', array(
+            ->addColumn('email', 'anchor', [
                 'label' => 'ekyna_core.field.email',
                 'sortable' => true,
                 'route_name' => 'ekyna_mailing_recipient_admin_show',
-                'route_parameters_map' => array(
+                'route_parameters_map' => [
                     'recipientId' => 'id'
-                ),
-            ))
-            ->addColumn('firstName', 'text', array(
+                ],
+            ])
+            ->addColumn('firstName', 'text', [
                 'label' => 'ekyna_core.field.first_name',
                 'sortable' => true,
-            ))
-            ->addColumn('lastName', 'text', array(
+            ])
+            ->addColumn('lastName', 'text', [
                 'label' => 'ekyna_core.field.last_name',
                 'sortable' => true,
-            ))
-            ->addColumn('actions', 'admin_actions', array(
-                'buttons' => array(
-                    array(
+            ])
+            ->addColumn('actions', 'admin_actions', [
+                'buttons' => [
+                    [
                         'label' => 'ekyna_core.button.edit',
                         'class' => 'warning',
                         'route_name' => 'ekyna_mailing_recipient_admin_edit',
-                        'route_parameters_map' => array(
+                        'route_parameters_map' => [
                             'recipientId' => 'id'
-                        )
-                    ),
+                        ]
+                    ],
                     $deleteButton,
-                ),
-            ))
-            ->addFilter('email', 'text', array(
+                ],
+            ])
+            ->addFilter('email', 'text', [
                 'label' => 'ekyna_core.field.email',
-            ))
-            ->addFilter('firstName', 'text', array(
+            ])
+            ->addFilter('firstName', 'text', [
                 'label' => 'ekyna_core.field.first_name',
-            ))
-            ->addFilter('lastName', 'text', array(
+            ])
+            ->addFilter('lastName', 'text', [
                 'label' => 'ekyna_core.field.last_name',
-            ))
+            ])
         ;
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
 
         $resolver
-            ->setDefaults(array(
+            ->setDefaults([
                 'delete_button' => null,
-            ))
-            ->setAllowedTypes(array(
-                'delete_button' => array('null', 'array'),
-            ))
+            ])
+            ->setAllowedTypes('delete_button', ['null', 'array'])
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return 'ekyna_mailing_recipient';

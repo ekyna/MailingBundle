@@ -134,9 +134,9 @@ class TrackerListener implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return array(
-            KernelEvents::REQUEST  => array('onKernelRequest', 0),
-            KernelEvents::RESPONSE => array('onKernelResponse', -1024),
-        );
+        return [
+            KernelEvents::REQUEST  => ['onKernelRequest', 0],
+            KernelEvents::RESPONSE => ['onKernelResponse', -1024],
+        ];
     }
 }

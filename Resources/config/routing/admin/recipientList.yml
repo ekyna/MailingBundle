@@ -1,46 +1,43 @@
 ekyna_mailing_recipientList_admin_home:
-    path: /
+    path: ""
     defaults: { _controller: "ekyna_mailing.recipientList.controller:homeAction" }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 ekyna_mailing_recipientList_admin_list:
     path: /list
     defaults: { _controller: "ekyna_mailing.recipientList.controller:listAction" }
-    requirements:
-        _method: GET|POST
+    methods: [GET|POST]
 
 ekyna_mailing_recipientList_admin_new:
     path: /new
     defaults: { _controller: "ekyna_mailing.recipientList.controller:newAction" }
-    requirements:
-        _method: GET|POST
+    methods: [GET|POST]
 
 ekyna_mailing_recipientList_admin_show:
     path: /{recipientListId}/show
     defaults: { _controller: "ekyna_mailing.recipientList.controller:showAction" }
+    methods: [GET|POST]
     requirements:
-        _method: GET|POST
         recipientListId: \d+
 
 ekyna_mailing_recipientList_admin_recipients_unlink:
     path: /{recipientListId}/recipients/{recipientId}/unlink
     defaults: { _controller: "ekyna_mailing.recipientList.controller:unlinkRecipientAction" }
+    methods: [GET|POST]
     requirements:
-        _method: GET|POST
         recipientListId: \d+
         recipientId: \d+
 
 ekyna_mailing_recipientList_admin_edit:
     path: /{recipientListId}/edit
     defaults: { _controller: "ekyna_mailing.recipientList.controller:editAction" }
+    methods: [GET|POST]
     requirements:
-        _method: GET|POST
         recipientListId: \d+
 
 ekyna_mailing_recipientList_admin_remove:
     path: /{recipientListId}/remove
     defaults: { _controller: "ekyna_mailing.recipientList.controller:removeAction" }
+    methods: [GET|POST]
     requirements:
-        _method: GET|POST
         recipientListId: \d+

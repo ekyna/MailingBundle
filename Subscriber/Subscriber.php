@@ -3,7 +3,7 @@
 namespace Ekyna\Bundle\MailingBundle\Subscriber;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Ekyna\Bundle\AdminBundle\Event\ResourceEvent;
+use Ekyna\Bundle\AdminBundle\Event\ResourceEventInterface;
 use Ekyna\Bundle\AdminBundle\Event\ResourceMessage;
 use Ekyna\Bundle\MailingBundle\Entity\Recipient;
 use Ekyna\Bundle\MailingBundle\Entity\RecipientRepository;
@@ -60,12 +60,9 @@ class Subscriber implements SubscriberInterface
     }
 
     /**
-     * Synchronizes the recipient's data with the given user.
-     *
-     * @param UserInterface $user
-     * @param ResourceEvent $event
+     * {@inheritdoc}
      */
-    public function synchronizeByUser(UserInterface $user, ResourceEvent $event = null)
+    public function synchronizeByUser(UserInterface $user, ResourceEventInterface $event = null)
     {
         if (null !== $recipient = $this->findRecipientByUser($user)) {
             $doPersist = false;
@@ -103,12 +100,9 @@ class Subscriber implements SubscriberInterface
     }
 
     /**
-     * Synchronizes the user's data with the given recipient.
-     *
-     * @param Recipient     $recipient
-     * @param ResourceEvent $event
+     * {@inheritdoc}
      */
-    public function synchronizeByRecipient(Recipient $recipient, ResourceEvent $event = null)
+    public function synchronizeByRecipient(Recipient $recipient, ResourceEventInterface $event = null)
     {
         if (null === $recipient->getUser() && null !== $user = $this->findUserByRecipient($recipient)) {
             $recipient->setUser($user);
@@ -142,10 +136,10 @@ class Subscriber implements SubscriberInterface
      */
     protected function findRecipientByUser(UserInterface $user)
     {
-        if (null !== $recipient = $this->recipientRepository->findOneBy(array('user' => $user))) {
+        if (null !== $recipient = $this->recipientRepository->findOneBy(['user' => $user])) {
             return $recipient;
         }
-        return $this->recipientRepository->findOneBy(array('email' => $user->getEmail()));
+        return $this->recipientRepository->findOneBy(['email' => $user->getEmail()]);
     }
 
     /**
@@ -157,8 +151,8 @@ class Subscriber implements SubscriberInterface
     protected function findUserByRecipient(Recipient $recipient)
     {
         if (null !== $user = $recipient->getUser()) {
-            return $this->userRepository->findOneBy(array('id' => $user->getId()));
+            return $this->userRepository->findOneBy(['id' => $user->getId()]);
         }
-        return $this->userRepository->findOneBy(array('email' => $recipient->getEmail()));
+        return $this->userRepository->findOneBy(['email' => $recipient->getEmail()]);
     }
 }

@@ -5,5 +5,4 @@ ekyna_mailing_admin:
 ekyna_mailing_tracker_open:
     path: /mailing/track/open
     defaults: { _controller: "EkynaMailingBundle:Tracker:trackOpen" }
-    requirements:
-        _method: GET
+    methods: [GET]

@@ -20,7 +20,7 @@ final class ExecutionTypes
      */
     public static function isValid($type)
     {
-        return in_array($type, array(self::TYPE_MANUAL, self::TYPE_AUTO));
+        return in_array($type, [self::TYPE_MANUAL, self::TYPE_AUTO]);
     }
 
     /**
@@ -63,9 +63,9 @@ final class ExecutionTypes
     {
         $translationBase = 'ekyna_mailing.execution.type.';
 
-        return array(
+        return [
             self::TYPE_MANUAL => $translationBase.self::TYPE_MANUAL,
             self::TYPE_AUTO   => $translationBase.self::TYPE_AUTO,
-        );
+        ];
     }
 }

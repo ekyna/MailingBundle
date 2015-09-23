@@ -1,54 +1,49 @@
 ekyna_mailing_recipient_admin_home:
-    path: /
+    path: ""
     defaults: { _controller: "ekyna_mailing.recipient.controller:homeAction" }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 ekyna_mailing_recipient_admin_list:
     path: /list
     defaults: { _controller: "ekyna_mailing.recipient.controller:listAction" }
-    requirements:
-        _method: GET|POST
+    methods: [GET|POST]
 
 ekyna_mailing_recipient_admin_new:
     path: /new
     defaults: { _controller: "ekyna_mailing.recipient.controller:newAction" }
-    requirements:
-        _method: GET|POST
+    methods: [GET|POST]
 
 ekyna_mailing_recipient_admin_show:
     path: /{recipientId}/show
     defaults: { _controller: "ekyna_mailing.recipient.controller:showAction" }
+    methods: [GET]
     requirements:
-        _method: GET
         recipientId: \d+
 
 ekyna_mailing_recipient_admin_edit:
     path: /{recipientId}/edit
     defaults: { _controller: "ekyna_mailing.recipient.controller:editAction" }
+    methods: [GET|POST]
     requirements:
-        _method: GET|POST
         recipientId: \d+
 
 ekyna_mailing_recipient_admin_remove:
     path: /{recipientId}/remove
     defaults: { _controller: "ekyna_mailing.recipient.controller:removeAction" }
+    methods: [GET|POST]
     requirements:
-        _method: GET|POST
         recipientId: \d+
 
 ekyna_mailing_recipient_admin_search:
     path: /search
     defaults: { _controller: "ekyna_mailing.recipient.controller:searchAction" }
-    requirements:
-        _method: GET
+    methods: [GET]
     options:
         expose: true
 
 ekyna_mailing_recipient_admin_find:
     path: /find
     defaults: { _controller: "ekyna_mailing.recipient.controller:findAction" }
-    requirements:
-        _method: GET
+    methods: [GET]
     options:
         expose: true

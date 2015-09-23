@@ -54,9 +54,9 @@ class UserListener implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return array(
-            UserEvents::POST_CREATE => array('onPostCreate', 0),
-            UserEvents::POST_UPDATE => array('onPostUpdate', 0),
-        );
+        return [
+            UserEvents::POST_CREATE => ['onPostCreate', 0],
+            UserEvents::POST_UPDATE => ['onPostUpdate', 0],
+        ];
     }
 }

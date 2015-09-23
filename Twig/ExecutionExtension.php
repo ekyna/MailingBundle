@@ -47,13 +47,13 @@ class ExecutionExtension extends \Twig_Extension
      */
     public function getFunctions()
     {
-        return array(
-            new \Twig_SimpleFunction('mail_execution_type', array($this, 'renderExecutionType'), array('is_safe' => array('html'))),
-            new \Twig_SimpleFunction('mail_execution_state', array($this, 'renderExecutionState'), array('is_safe' => array('html'))),
-            new \Twig_SimpleFunction('mail_execution_btn', array($this, 'renderExecutionButton'), array('is_safe' => array('html'))),
-            new \Twig_SimpleFunction('mail_execution_progress', array($this, 'renderExecutionProgress'), array('is_safe' => array('html'))),
-            new \Twig_SimpleFunction('mail_progress_bar', array($this, 'renderProgressBar'), array('is_safe' => array('html'))),
-        );
+        return [
+            new \Twig_SimpleFunction('mail_execution_type', [$this, 'renderExecutionType'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction('mail_execution_state', [$this, 'renderExecutionState'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction('mail_execution_btn', [$this, 'renderExecutionButton'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction('mail_execution_progress', [$this, 'renderExecutionProgress'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction('mail_progress_bar', [$this, 'renderProgressBar'], ['is_safe' => ['html']]),
+        ];
     }
 
     /**
@@ -65,10 +65,10 @@ class ExecutionExtension extends \Twig_Extension
     public function renderExecutionType(Execution $execution)
     {
         $type = $execution->getType();
-        return $this->template->renderBlock('execution_state', array(
+        return $this->template->renderBlock('execution_state', [
             'state' => ExecutionTypes::getLabel($type),
             'theme' => ExecutionTypes::getTheme($type),
-        ));
+        ]);
     }
 
     /**
@@ -80,10 +80,10 @@ class ExecutionExtension extends \Twig_Extension
     public function renderExecutionState(Execution $execution)
     {
         $state = $execution->getState();
-        return $this->template->renderBlock('execution_state', array(
+        return $this->template->renderBlock('execution_state', [
             'state' => ExecutionStates::getLabel($state),
             'theme' => ExecutionStates::getTheme($state),
-        ));
+        ]);
     }
 
     /**
@@ -95,14 +95,14 @@ class ExecutionExtension extends \Twig_Extension
      */
     public function renderExecutionButton(Execution $execution, $action)
     {
-        return $this->template->renderBlock('execution_button', array(
+        return $this->template->renderBlock('execution_button', [
             'execution' => $execution,
             'action'    => $action,
             'label'     => $this->getLabelForAction($action),
             'enabled'   => $this->factory->get($execution)->can($action),
             'theme'     => $this->getThemeForAction($action),
             'icon'      => $this->getIconForAction($action),
-        ));
+        ]);
     }
 
     /**
@@ -118,11 +118,11 @@ class ExecutionExtension extends \Twig_Extension
             $percent = round(($execution->getSent() + $execution->getFailed()) * 100 / $total, 2);
         }*/
 
-        return $this->renderProgressBar(array(
+        return $this->renderProgressBar([
             'value' => $execution->getSent() + $execution->getFailed(),
             'max'   => $execution->getTotal(),
             'theme' => ExecutionStates::getTheme($execution->getState()),
-        ));
+        ]);
     }
 
     /**
@@ -133,7 +133,7 @@ class ExecutionExtension extends \Twig_Extension
      */
     public function renderProgressBar(array $params)
     {
-        $params = array_merge(array(
+        $params = array_merge([
             'min'     => 0,
             'value'   => 0,
             'max'     => 100,
@@ -141,7 +141,7 @@ class ExecutionExtension extends \Twig_Extension
             'append'  => '',
             'theme'   => 'default',
             'striped' => false,
-        ), $params);
+        ], $params);
 
         $current = abs($params['value'] - $params['min']);
         $total = abs($params['max'] - $params['min']);

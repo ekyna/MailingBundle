@@ -28,7 +28,7 @@ class RecipientRepository extends Repository implements SearchRepositoryInterfac
             $query = new Query\MultiMatch();
             $query
                 ->setQuery($text)
-                ->setFields(array('email', 'first_name', 'last_name'))
+                ->setFields(['email', 'first_name', 'last_name'])
             ;
         }
 

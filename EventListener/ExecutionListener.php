@@ -228,22 +228,22 @@ class ExecutionListener implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return array(
-            ExecutionEvents::PRE_CREATE     => array('onPreCreate',     0),
-            ExecutionEvents::POST_CREATE    => array('onPostCreate',    0),
-            ExecutionEvents::PRE_UPDATE     => array('onPreUpdate',     0),
-            ExecutionEvents::POST_UPDATE    => array('onPostUpdate',    0),
-            ExecutionEvents::PRE_DELETE     => array('onPreDelete',     0),
-            ExecutionEvents::POST_DELETE    => array('onPostDelete',    0),
+        return [
+            ExecutionEvents::PRE_CREATE     => ['onPreCreate',     0],
+            ExecutionEvents::POST_CREATE    => ['onPostCreate',    0],
+            ExecutionEvents::PRE_UPDATE     => ['onPreUpdate',     0],
+            ExecutionEvents::POST_UPDATE    => ['onPostUpdate',    0],
+            ExecutionEvents::PRE_DELETE     => ['onPreDelete',     0],
+            ExecutionEvents::POST_DELETE    => ['onPostDelete',    0],
 
-            ExecutionEvents::PRE_LOCK       => array('onPreLock',      -1024),
-            ExecutionEvents::POST_LOCK      => array('onPostLock',      1024),
-            ExecutionEvents::PRE_UNLOCK     => array('onPreUnlock',    -1024),
-            ExecutionEvents::POST_UNLOCK    => array('onPostUnlock',    1024),
-            ExecutionEvents::PRE_START      => array('onPreStart',     -1024),
-            ExecutionEvents::POST_START     => array('onPostStart',     1024),
-            ExecutionEvents::PRE_STOP       => array('onPreStop',      -1024),
-            ExecutionEvents::POST_STOP      => array('onPostStop',      1024),
-        );
+            ExecutionEvents::PRE_LOCK       => ['onPreLock',      -1024],
+            ExecutionEvents::POST_LOCK      => ['onPostLock',      1024],
+            ExecutionEvents::PRE_UNLOCK     => ['onPreUnlock',    -1024],
+            ExecutionEvents::POST_UNLOCK    => ['onPostUnlock',    1024],
+            ExecutionEvents::PRE_START      => ['onPreStart',     -1024],
+            ExecutionEvents::POST_START     => ['onPostStart',     1024],
+            ExecutionEvents::PRE_STOP       => ['onPreStop',      -1024],
+            ExecutionEvents::POST_STOP      => ['onPostStop',      1024],
+        ];
     }
 }

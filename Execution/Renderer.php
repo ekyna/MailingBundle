@@ -63,10 +63,10 @@ class Renderer
 
         $template = $this->getTemplate($campaign->getTemplate());
 
-        $content = $this->twig->render($template, array(
+        $content = $this->twig->render($template, [
             'campaign'  => $campaign,
             'recipient' => $recipientExecution->getRecipient(),
-        ));
+        ]);
 
         // Append visit tracker token to all anchor's href attribute.
         $token = $recipientExecution->getToken();
@@ -86,9 +86,9 @@ class Renderer
         );
 
         // Append open tracker image
-        $openTrackerUrl = $this->urlGenerator->generate('ekyna_mailing_tracker_open', array(
+        $openTrackerUrl = $this->urlGenerator->generate('ekyna_mailing_tracker_open', [
             $this->config['open_param'] => $token,
-        ), true);
+        ], true);
         $img = '<img src="' . $openTrackerUrl . '" width="1" height="1">';
         $content = str_replace('</body>', $img.'</body>', $content);
 

@@ -37,42 +37,42 @@ class CampaignType extends ResourceFormType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', array(
+            ->add('name', 'text', [
                 'label' => 'ekyna_core.field.name',
                 'required' => true,
-            ))
-            ->add('fromEmail', 'text', array(
+            ])
+            ->add('fromEmail', 'text', [
                 'label' => 'ekyna_mailing.campaign.field.from_email',
                 'required' => true,
-            ))
-            ->add('fromName', 'text', array(
+            ])
+            ->add('fromName', 'text', [
                 'label' => 'ekyna_mailing.campaign.field.from_name',
                 'required' => true,
-            ))
-            ->add('subject', 'text', array(
+            ])
+            ->add('subject', 'text', [
                 'label' => 'ekyna_core.field.subject',
                 'required' => true,
-            ))
-            ->add('template', 'choice', array(
+            ])
+            ->add('template', 'choice', [
                 'label' => 'ekyna_mailing.campaign.field.template',
                 'choices' => $this->templates,
                 'empty_value' => 'ekyna_core.value.choose',
-                'attr' => array(
+                'attr' => [
                     'placeholder' => 'ekyna_core.value.choose',
-                ),
+                ],
                 'multiple' => false,
                 'expanded' => false,
                 'required' => true,
-            ))
-            ->add('content', 'textarea', array(
+            ])
+            ->add('content', 'textarea', [
                 'label' => 'ekyna_core.field.content',
                 'required' => true,
-                'attr' => array(
+                'attr' => [
                     'class' => 'tinymce',
                     'data-theme' => 'advanced',
                     'data-config' => json_encode(['remove_script_host' => false])
-                ),
-            ))
+                ],
+            ])
         ;
     }
 

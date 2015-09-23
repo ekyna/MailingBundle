@@ -54,9 +54,9 @@ class RecipientListener implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return array(
-            RecipientEvents::POST_CREATE => array('onPostCreate', 0),
-            RecipientEvents::POST_UPDATE => array('onPostUpdate', 0),
-        );
+        return [
+            RecipientEvents::POST_CREATE => ['onPostCreate', 0],
+            RecipientEvents::POST_UPDATE => ['onPostUpdate', 0],
+        ];
     }
 }

@@ -23,12 +23,12 @@ class ExecutionTypeType extends PropertyType
 
         $state = $cell->vars['value'];
 
-        $cell->setVars(array(
+        $cell->setVars([
             'route' => null,
             'label' => ExecutionTypes::getLabel($state),
             'class' => 'label-'.ExecutionTypes::getTheme($state),
             'type'  => 'boolean'
-        ));
+        ]);
     }
 
     /**

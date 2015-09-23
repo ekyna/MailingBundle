@@ -19,25 +19,25 @@ class ExecutionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', array(
+            ->add('name', 'text', [
                 'label' => 'ekyna_core.field.name',
                 'required' => false,
-            ))
-            ->add('type', 'choice', array(
+            ])
+            ->add('type', 'choice', [
                 'label' => 'ekyna_core.field.type',
                 'choices' => ExecutionTypes::getChoices(),
-            ))
-            ->add('startDate', 'datetime', array(
+            ])
+            ->add('startDate', 'datetime', [
                 'label' => 'ekyna_core.field.start_date',
                 'required' => false,
-            ))
-            ->add('recipientLists', 'entity', array(
+            ])
+            ->add('recipientLists', 'entity', [
                 'label' => 'ekyna_mailing.recipientList.label.plural',
                 'class' => 'Ekyna\Bundle\MailingBundle\Entity\RecipientList',
                 'property' => 'name',
                 'multiple' => true,
                 'required' => false,
-            ))
+            ])
         ;
     }
 

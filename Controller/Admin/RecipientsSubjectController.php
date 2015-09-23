@@ -72,7 +72,7 @@ abstract class RecipientsSubjectController extends ResourceController
                     if (0 < $count && !$event->isPropagationStopped()) {
                         $this->addFlash($this->getTranslator()->trans(
                             'ekyna_mailing.recipient_provider.message.added_count',
-                            array('%count%' => $count)
+                            ['%count%' => $count]
                         ), 'info');
                     }
 

@@ -97,10 +97,10 @@ class Locker
             ->andWhere($qb->expr()->eq('re.state', ':state'))
             ->andWhere($qb->expr()->eq('re.execution', ':execution'))
             ->getQuery()
-            ->setParameters(array(
+            ->setParameters([
                 'state'     => RecipientExecutionStates::STATE_PENDING,
                 'execution' => $execution,
-            ))
+            ])
             ->execute()
         ;
     }
@@ -129,9 +129,9 @@ class Locker
      */
     protected function findRecipientExecution(Recipient $recipient, Execution $execution)
     {
-        return $this->reRepo->findOneBy(array(
+        return $this->reRepo->findOneBy([
             'recipient' => $recipient,
             'execution' => $execution,
-        ));
+        ]);
     }
 }

@@ -13,6 +13,9 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class RecipientProviderPass implements CompilerPassInterface
 {
+    /**
+     * {@inheritdoc}
+     */
     public function process(ContainerBuilder $container)
     {
         if (!$container->hasDefinition('ekyna_mailing.recipient_provider.registry')) {
@@ -30,7 +33,7 @@ class RecipientProviderPass implements CompilerPassInterface
             foreach ($tagAttributes as $attributes) {
                 $definition->addMethodCall(
                     'addProvider',
-                    array(new Reference($id), $attributes["alias"])
+                    [new Reference($id), $attributes["alias"]]
                 );
             }
         }

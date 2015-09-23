@@ -12,6 +12,9 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
  */
 class AdminMenuPass implements CompilerPassInterface
 {
+    /**
+     * {@inheritdoc}
+     */
     public function process(ContainerBuilder $container)
     {
         if (!$container->hasDefinition('ekyna_admin.menu.pool')) {
@@ -20,25 +23,25 @@ class AdminMenuPass implements CompilerPassInterface
 
         $pool = $container->getDefinition('ekyna_admin.menu.pool');
 
-        $pool->addMethodCall('createGroup', array(array(
+        $pool->addMethodCall('createGroup', [[
             'name'     => 'mailing',
             'label'    => 'ekyna_mailing.menu',
             'icon'     => 'envelope',
             'position' => 70,
-        )));
-        $pool->addMethodCall('createEntry', array('mailing', array(
+        ]]);
+        $pool->addMethodCall('createEntry', ['mailing', [
             'name'     => 'campaigns',
             'route'    => 'ekyna_mailing_campaign_admin_home',
             'label'    => 'ekyna_mailing.campaign.label.plural',
             'resource' => 'ekyna_mailing_campaign',
             'position' => 1,
-        )));
-        $pool->addMethodCall('createEntry', array('mailing', array(
+        ]]);
+        $pool->addMethodCall('createEntry', ['mailing', [
             'name'     => 'recipientLists',
             'route'    => 'ekyna_mailing_recipientList_admin_home',
             'label'    => 'ekyna_mailing.recipientList.label.plural',
             'resource' => 'ekyna_mailing_recipientList',
             'position' => 2,
-        )));
+        ]]);
     }
 }

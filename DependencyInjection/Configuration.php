@@ -45,12 +45,12 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
                 ->arrayNode('templates')
-                    ->defaultValue(array(
-                        'default' => array(
+                    ->defaultValue([
+                        'default' => [
                             'label' => 'ekyna_mailing.default_template',
                             'path'  => 'EkynaMailingBundle::default_template.html.twig',
-                        ),
-                    ))
+                        ],
+                    ])
                     ->requiresAtLeastOneElement()
                     ->useAttributeAsKey('name')
                     ->prototype('array')
@@ -80,10 +80,10 @@ class Configuration implements ConfigurationInterface
                             ->isRequired()
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->variableNode('templates')->defaultValue(array(
+                                ->variableNode('templates')->defaultValue([
                                     '_form.html' => 'EkynaMailingBundle:Admin/Campaign:_form.html',
                                     'show.html'  => 'EkynaMailingBundle:Admin/Campaign:show.html',
-                                ))->end()
+                                ])->end()
                                 ->scalarNode('parent')->end()
                                 ->scalarNode('entity')->defaultValue('Ekyna\Bundle\MailingBundle\Entity\Campaign')->end()
                                 ->scalarNode('controller')->defaultValue('Ekyna\Bundle\MailingBundle\Controller\Admin\CampaignController')->end()
@@ -112,10 +112,10 @@ class Configuration implements ConfigurationInterface
                             ->isRequired()
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->variableNode('templates')->defaultValue(array(
+                                ->variableNode('templates')->defaultValue([
                                     '_form.html' => 'EkynaMailingBundle:Admin/RecipientList:_form.html',
                                     'show.html'  => 'EkynaMailingBundle:Admin/RecipientList:show.html',
-                                ))->end()
+                                ])->end()
                                 ->scalarNode('parent')->end()
                                 ->scalarNode('entity')->defaultValue('Ekyna\Bundle\MailingBundle\Entity\RecipientList')->end()
                                 ->scalarNode('controller')->defaultValue('Ekyna\Bundle\MailingBundle\Controller\Admin\RecipientListController')->end()
@@ -129,10 +129,10 @@ class Configuration implements ConfigurationInterface
                             ->isRequired()
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->variableNode('templates')->defaultValue(array(
+                                ->variableNode('templates')->defaultValue([
                                     '_form.html' => 'EkynaMailingBundle:Admin/Recipient:_form.html',
                                     'show.html'  => 'EkynaMailingBundle:Admin/Recipient:show.html',
-                                ))->end()
+                                ])->end()
                                 ->scalarNode('parent')->end()
                                 ->scalarNode('entity')->defaultValue('Ekyna\Bundle\MailingBundle\Entity\Recipient')->end()
                                 ->scalarNode('controller')->end()

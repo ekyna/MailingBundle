@@ -39,9 +39,9 @@ class ExecutionController extends RecipientsSubjectController
 
         // TODO return json and use jms/twig ?
 
-        return $this->render('EkynaMailingBundle:Admin/Execution:controls.html.twig', array(
+        return $this->render('EkynaMailingBundle:Admin/Execution:controls.html.twig', [
             'execution' => $execution,
-        ), $response);
+        ], $response);
     }
 
     /**
@@ -54,7 +54,7 @@ class ExecutionController extends RecipientsSubjectController
 
         $qb = $this->getRepository()->createQueryBuilder('e');
         $results = $qb
-            ->select(array('r.id'))
+            ->select(['r.id'])
             ->join('e.recipients', 'r')
             ->where($qb->expr()->eq('e.id', $execution->getId()))
             ->groupBy('r.id')
@@ -63,7 +63,7 @@ class ExecutionController extends RecipientsSubjectController
         ;
 
         if (empty($results)) {
-            $executionIds = array(0);
+            $executionIds = [0];
         } else {
             $executionIds = array_map(function ($e) {
                 return $e['id'];
@@ -71,21 +71,21 @@ class ExecutionController extends RecipientsSubjectController
         }
 
         return $this->getTableFactory()
-            ->createBuilder('ekyna_mailing_recipient', array(
+            ->createBuilder('ekyna_mailing_recipient', [
                 'name' => 'ekyna_mailing.recipient',
                 'customize_qb' => function (QueryBuilder $qb, $alias) use ($executionIds) {
                     $qb
                         ->andWhere($alias.'.id IN (:ids)')
                         ->setParameter('ids', $executionIds);
                 },
-                'delete_button' => array(
+                'delete_button' => [
                     'label' => 'ekyna_core.button.unlink',
                     'class' => 'danger',
                     'route_name' => 'ekyna_mailing_execution_admin_recipients_unlink',
                     'route_parameters' => $context->getIdentifiers(true),
-                    'route_parameters_map' => array('recipientId' => 'id'),
-                )
-            ))
+                    'route_parameters_map' => ['recipientId' => 'id'],
+                ]
+            ])
             ->getTable($context->getRequest());
     }
 
@@ -189,9 +189,9 @@ class ExecutionController extends RecipientsSubjectController
      */
     protected function redirectToShowExecution(Execution $execution)
     {
-        return $this->redirect($this->generateUrl('ekyna_mailing_execution_admin_show', array(
+        return $this->redirect($this->generateUrl('ekyna_mailing_execution_admin_show', [
             'campaignId' => $execution->getCampaign()->getId(),
             'executionId' => $execution->getId(),
-        )));
+        ]));
     }
 }

@@ -13,6 +13,13 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class TrackerController extends Controller
 {
+    /**
+     * Mail opened tracker action.
+     *
+     * @param Request $request
+     * @return TransparentPixelResponse
+     * @throws \SM\SMException
+     */
     public function trackOpenAction(Request $request)
     {
         $param = $this->container->getParameter('ekyna_mailing.tracker_config')['open_param'];

@@ -14,6 +14,9 @@ class Execution extends Constraint
     public $invalidType = 'ekyna_mailing.execution.invalid_type';
     public $mandatoryStartDate = 'ekyna_mailing.execution.mandatory_start_date';
 
+    /**
+     * {@inheritdoc}
+     */
     public function getTargets()
     {
         return self::CLASS_CONSTRAINT;
