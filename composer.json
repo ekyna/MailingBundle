@@ -19,7 +19,7 @@
     ],
     "require" : {
         "php" : ">=5.3.3",
-        "ekyna/admin-bundle" : "0.3.*@dev",
+        "ekyna/admin-bundle" : "0.3.x-dev",
         "winzou/state-machine-bundle": "~0.2"
     },
     "autoload" : {
