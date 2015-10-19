@@ -18,18 +18,13 @@
         "MIT"
     ],
     "require" : {
-        "php" : ">=5.3.3",
+        "php" : ">=5.4.0",
         "ekyna/admin-bundle" : "0.4.x-dev",
         "winzou/state-machine-bundle": "~0.2"
     },
     "autoload" : {
         "psr-4" : {
             "Ekyna\\Bundle\\MailingBundle\\" : ""
-        }
-    },
-    "extra" : {
-        "branch-alias" : {
-            "dev-master" : "0.4.x-dev"
         }
     }
 }
