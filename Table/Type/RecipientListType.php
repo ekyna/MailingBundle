@@ -21,7 +21,7 @@ class RecipientListType extends ResourceTableType
             ->addColumn('name', 'anchor', [
                 'label' => 'ekyna_core.field.name',
                 'sortable' => true,
-                'route_name' => 'ekyna_mailing_recipientList_admin_show',
+                'route_name' => 'ekyna_mailing_recipient_list_admin_show',
                 'route_parameters_map' => [
                     'recipientListId' => 'id',
                 ],
@@ -31,7 +31,7 @@ class RecipientListType extends ResourceTableType
                     [
                         'label' => 'ekyna_core.button.edit',
                         'class' => 'warning',
-                        'route_name' => 'ekyna_mailing_recipientList_admin_edit',
+                        'route_name' => 'ekyna_mailing_recipient_list_admin_edit',
                         'route_parameters_map' => [
                             'recipientListId' => 'id'
                         ],
@@ -40,7 +40,7 @@ class RecipientListType extends ResourceTableType
                     [
                         'label' => 'ekyna_core.button.remove',
                         'class' => 'danger',
-                        'route_name' => 'ekyna_mailing_recipientList_admin_remove',
+                        'route_name' => 'ekyna_mailing_recipient_list_admin_remove',
                         'route_parameters_map' => [
                             'recipientListId' => 'id'
                         ],
@@ -57,6 +57,6 @@ class RecipientListType extends ResourceTableType
      */
     public function getName()
     {
-        return 'ekyna_mailing_recipientList';
+        return 'ekyna_mailing_recipient_list';
     }
 }

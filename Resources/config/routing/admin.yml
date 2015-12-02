@@ -2,8 +2,8 @@ ekyna_mailing_campaign_admin:
     resource: "admin/campaign.yml"
     prefix:   /campaigns
 
-ekyna_mailing_recipientList_admin:
-    resource: "admin/recipientList.yml"
+ekyna_mailing_recipient_list_admin:
+    resource: "admin/recipient_list.yml"
     prefix:   /recipient-lists
 
 ekyna_mailing_recipient_admin:

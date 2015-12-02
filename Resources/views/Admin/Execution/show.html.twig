@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-md-6">{{ show_row(execution.startDate, 'datetime', 'ekyna_core.field.start_date', {'label_nb_col': 4}) }}</div>
                 </div>
-                {{ show_row(execution.recipientLists, 'entity', 'ekyna_mailing.recipientList.label.plural', {'field': 'name', 'route': 'ekyna_mailing_recipientList_admin_show', 'route_params_map': {'recipientListId': 'id'}}) }}
+                {{ show_row(execution.recipientLists, 'entity', 'ekyna_mailing.recipient_list.label.plural', {'field': 'name', 'route': 'ekyna_mailing_recipient_list_admin_show', 'route_params_map': {'recipientListId': 'id'}}) }}
                 <hr>
                 <div class="row show-row">
                     <div class="col-md-2 show-label">Progression</div>

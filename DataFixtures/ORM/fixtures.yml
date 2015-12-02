@@ -17,9 +17,9 @@ Ekyna\Bundle\MailingBundle\Entity\Recipient:
         lastName: <lastName()>
 
 Ekyna\Bundle\MailingBundle\Entity\RecipientList:
-    "mailing_recipientList_test":
+    "mailing_recipient_list_test":
         name: Recipient list test name
         recipients: <numberBetween(5, 10)>x @mailing_recipient_*
-    "mailing_recipientList_{1..3}":
+    "mailing_recipient_list_{1..3}":
         name: Recipient list <current()> name
         recipients: <numberBetween(5, 10)>x @mailing_recipient_*

@@ -79,7 +79,7 @@ ekyna_mailing:
                 Veuillez choisir une liste de diffusion ou saisir des abonnés avant de démarrer l'exécution.
             locked_update: L'exécution est verrouillée et ne peut être modifiée.
             locked_delete: L'exécution est verrouillée et ne peut être supprimée.
-    recipientList:
+    recipient_list:
         label:
             singular: Liste de diffusion
             plural: Listes de diffusion

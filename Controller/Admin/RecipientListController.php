@@ -32,7 +32,7 @@ class RecipientListController extends RecipientsSubjectController
                 'delete_button' => [
                     'label' => 'ekyna_core.button.unlink',
                     'class' => 'danger',
-                    'route_name' => 'ekyna_mailing_recipientList_admin_recipients_unlink',
+                    'route_name' => 'ekyna_mailing_recipient_list_admin_recipients_unlink',
                     'route_parameters' => $context->getIdentifiers(true),
                     'route_parameters_map' => ['recipientId' => 'id'],
                 ]

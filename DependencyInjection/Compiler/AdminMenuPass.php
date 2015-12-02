@@ -37,10 +37,10 @@ class AdminMenuPass implements CompilerPassInterface
             'position' => 1,
         ]]);
         $pool->addMethodCall('createEntry', ['mailing', [
-            'name'     => 'recipientLists',
-            'route'    => 'ekyna_mailing_recipientList_admin_home',
-            'label'    => 'ekyna_mailing.recipientList.label.plural',
-            'resource' => 'ekyna_mailing_recipientList',
+            'name'     => 'recipient_lists',
+            'route'    => 'ekyna_mailing_recipient_list_admin_home',
+            'label'    => 'ekyna_mailing.recipient_list.label.plural',
+            'resource' => 'ekyna_mailing_recipient_list',
             'position' => 2,
         ]]);
     }

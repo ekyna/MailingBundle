@@ -32,7 +32,7 @@ class ExecutionType extends AbstractType
                 'required' => false,
             ])
             ->add('recipientLists', 'entity', [
-                'label' => 'ekyna_mailing.recipientList.label.plural',
+                'label' => 'ekyna_mailing.recipient_list.label.plural',
                 'class' => 'Ekyna\Bundle\MailingBundle\Entity\RecipientList',
                 'property' => 'name',
                 'multiple' => true,

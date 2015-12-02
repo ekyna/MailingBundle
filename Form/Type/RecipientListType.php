@@ -29,6 +29,6 @@ class RecipientListType extends ResourceFormType
      */
     public function getName()
     {
-        return 'ekyna_mailing_recipientList';
+        return 'ekyna_mailing_recipient_list';
     }
 }

@@ -108,7 +108,7 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('event')->defaultValue('Ekyna\Bundle\MailingBundle\Event\ExecutionEvent')->end()
                             ->end()
                         ->end()
-                        ->arrayNode('recipientList')
+                        ->arrayNode('recipient_list')
                             ->isRequired()
                             ->addDefaultsIfNotSet()
                             ->children()
