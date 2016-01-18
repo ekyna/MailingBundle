@@ -51,7 +51,7 @@ class MailingInstaller implements OrderedInstallerInterface, ContainerAwareInter
     {
         $name = $this->container->getParameter('ekyna_mailing.default_list');
 
-        $repository = $this->container->get('ekyna_mailing.recipientlist.repository');
+        $repository = $this->container->get('ekyna_mailing.recipient_list.repository');
 
         $output->write(sprintf(
             '- <comment>%s</comment> %s ',
@@ -63,7 +63,7 @@ class MailingInstaller implements OrderedInstallerInterface, ContainerAwareInter
             $list = new RecipientList();
             $list->setName($name);
 
-            $em = $this->container->get('ekyna_mailing.recipientlist.manager');
+            $em = $this->container->get('ekyna_mailing.recipient_list.manager');
             $em->persist($list);
             $em->flush();
 
